@@ -7,12 +7,12 @@
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
-            labels: [ "2012", "2013", "2014", "2015", "2016", "2017", "2018" ],
+            labels: [ "Januari", "Februari", "Maret", "April", "Mei", "juni", "Juli", "Agustus", "September" ],
             type: 'line',
             defaultFontFamily: 'Montserrat',
             datasets: [ {
-                data: [ 0, 7, 3, 5, 2, 8, 6 ],
-                label: "Expense",
+                data: [ 0, 7, 3, 5, 2, 8, 6, 8, 6 ],
+                label: "Sudah dikalibrasi",
                 backgroundColor: 'rgba(0,200,155,.35)',
                 borderColor: 'rgba(0,200,155,0.60)',
                 borderWidth: 3.5,
@@ -22,8 +22,8 @@
                 pointBackgroundColor: 'rgba(0,200,155,0.60)',
                     },
                     {
-                data: [ 0, 6, 3, 4, 3, 7, 10 ],
-                label: "Profit",
+                data: [ 0, 6, 3, 4, 3, 7, 10, 8, 6  ],
+                label: "Belum dikalibrasi",
                 backgroundColor: 'rgba(0,194,146,.25)',
                 borderColor: 'rgba(0,194,146,0.5)',
                 borderWidth: 3.5,

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataEksternal;
 use DB;
-use App\AlatStandar;
-use App\MasterData;
-use Session;
-use File;
 
-class LabPengujianController extends Controller
+class DataEksternalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,8 @@ class LabPengujianController extends Controller
      */
     public function index()
     {
-        $alat = MasterData::all();
         $out = [];
-        $data = DB::table('lab-cirebon.alat_standar')->get();
+        $data = DB::table('lab-cirebon.data_eksternal')->get();
         if (count($data) > 0) {
             $out['state'] = true;
             $out['message'] = 'success';
@@ -31,22 +27,7 @@ class LabPengujianController extends Controller
             $out['data'] = null;
         }
 
-        return view('dashboard.pengujian.index', compact('alat'));
-    }
-
-    public function getTable() {
-        $out = [];
-        $data = DB::table('lab-cirebon.alat_standar')->get();
-        if (count($data) > 0) {
-            $out['state'] = true;
-            $out['message'] = 'success';
-            $out['data'] = $data;
-        } else {
-            $out['state'] = false;
-            $out['message'] = 'empty';
-            $out['data'] = null;
-        }
-        return $out;
+        return view('dashboard.eksternal.index');
     }
 
     /**
@@ -67,38 +48,33 @@ class LabPengujianController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $images = array();
-
-        $this->validate($request, [
-            'filename' => 'required',
-            'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048'
-        ]);        
-
-        $insert_data = new AlatStandar;
-        $insert_data->nama_alat_ukur = $request->input('nama_alat_ukur'); 
-        $insert_data->merk = $request->input('merk'); 
-        $insert_data->merk = $request->input('id_alat'); 
-        $insert_data->nomor_seri = $request->input('nomor_seri'); 
-        $insert_data->kapasitas = $request->input('kapasitas'); 
-        $insert_data->kelas = $request->input('kelas'); 
-        $insert_data->nomor_inventaris = $request->input('nomor_inventaris'); 
-        $insert_data->jumlah = $request->input('jumlah'); 
-        $insert_data->internal = $request->input('internal'); 
-        $insert_data->eksternal = $request->input('eksternal'); 
-
-        $imageName = time().'.'.request()->filename->getClientOriginalExtension();
-        // dd($imageName);
-        request()->filename->move(public_path('assets/images'), $imageName);
-        $insert_data->gambar = $imageName;
+        $insert_data = new DataEksternal;
+        $insert_data->nama = $request->input('nama'); 
+        $insert_data->alamat = $request->input('alamat'); 
+        $insert_data->no_telepon = $request->input('no_telepon'); 
         $insert_data->save();
         if ($insert_data) {
             // Session::flash("success", "berhasil Menambah Product");
-            return redirect()->to("/lab-pengujian");
+            return redirect()->to("/data-eksternal");
         } else {
             // Session::flash("error", "Gagal Menambah Product");
-            return redirect()->to("/lab-pengujian");
+            return redirect()->to("/data-eksternal");
         }    
+    }
+
+    public function getTable() {
+        $out = [];
+        $data = DB::table('lab-cirebon.data_eksternal')->get();
+        if (count($data) > 0) {
+            $out['state'] = true;
+            $out['message'] = 'success';
+            $out['data'] = $data;
+        } else {
+            $out['state'] = false;
+            $out['message'] = 'empty';
+            $out['data'] = null;
+        }
+        return $out;
     }
 
     /**
@@ -132,7 +108,23 @@ class LabPengujianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->data);
+        $id = $request->data['id'];
+        $nama = $request->data['nama'];
+        $alamat = $request->data['alamat'];
+        $no_telepon = $request->data['no_telepon'];
+        $update_data = DataEksternal::find($id);
+        $update_data->nama = $nama; 
+        $update_data->alamat = $alamat; 
+        $update_data->no_telepon = $no_telepon; 
+        $update_data->save();
+        if ($update_data) {
+            return 'success';
+        } else {
+            $err['message'] = 'error';
+            $err['detail'] = '';
+            return $err;
+        }
     }
 
     /**
@@ -143,7 +135,7 @@ class LabPengujianController extends Controller
      */
     public function destroy($id)
     {
-        $get_alat = AlatStandar::find($id);
+        $get_alat = DataEksternal::find($id);
         // dd($gambar);
         $get_alat->delete();
         if ($get_alat) {

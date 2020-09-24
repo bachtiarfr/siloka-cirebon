@@ -1,17 +1,27 @@
 @extends('dashboard.master')
 @section('content')
-<div class="row">
-    <div class="col-md-12 col-lg-6">
-        <h4 class="box-title mb-3" style="font-size: 18px">Kalender Monitoring</h4>
-        <div class="card">
-            <div class="card-body">
-                <div class="calender-cont widget-calender">
-                    <div id="calendar"></div>
+<div class="content">
+    <h4 class="box-title mb-3" style="font-size: 18px">Kalender Monitoring</h4>
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="calender-cont widget-calender">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div><!-- /.card -->
+        </div>
+        
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mb-3">Data Chart </h4>
+                    <canvas id="team-chart"></canvas>
                 </div>
             </div>
-        </div><!-- /.card -->
+        </div><!-- /# column -->
     </div>
-    
 </div>
 <!-- /Calender Chart Weather -->
 <!-- Modal - Calendar - Add New Event -->

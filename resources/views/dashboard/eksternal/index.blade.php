@@ -8,29 +8,23 @@
         <div class="row">
             
             <div class="col-md-12">
-                <a href="#" data-toggle="modal" data-target="#myModal">
+                <a href="#" data-toggle="modal" data-target="#myModalEksternal">
                     <span class="badge badge-success mb-3">Masukan Data Baru</span>
                 </a>
                 <div class="form-group" id="gambar">
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Daftar Inventaris Alat Standar</strong>
+                        <strong class="card-title">Daftar Perusahaan Eksternal</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table_pengujian">
+                            <table class="table table-striped table-bordered table_data_eksternal">
                                 <thead>
                                     <tr>
-                                        <th>Nama Alat Ukur</th>
-                                        <th>Merk/Tipe</th>
-                                        <th>Nomor Seri</th>
-                                        <th>Kapasitas</th>
-                                        <th>kelas</th>
-                                        <th>Nomor Inventaris</th>
-                                        <th>Jumlah</th>
-                                        <th>Internal</th>
-                                        <th>Eksternal</th>
+                                        <th>Nama </th>
+                                        <th>Alamat</th>
+                                        <th>No Telepon</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -44,7 +38,7 @@
 </div><!-- .content -->
 
 <!-- Modal -->
-<div class="modal fade modal-primary" id="myModal">
+<div class="modal fade modal-primary" id="myModalEksternal">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -57,62 +51,19 @@
           <div class="col-lg-12">
               <div class="card">
                   <div class="card-body card-block">
-                    <form id="form_add_data" action="{{url('lab-pengujian/insert-data')}}" method="POST" enctype="multipart/form-data">
+                    <form id="form_add_data" action="{{url('data-eksternal/insert-data')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <div class="form-group">
-                        <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
-                        <select class="form-control select2" id="nama_alat_ukur" name="nama_alat_ukur">
-                          @foreach ($alat as $item)
-                          <option value="{{$item->nama}}" data-id="{{$item->id}}">{{$item->nama}}</option>
-                              
-                          @endforeach  
-                          </select>
-                          <input type="hidden" id="id_alat" name="id_alat">
-                          {{-- <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required> --}}
+                          <label for="nama" class=" form-control-label">Nama Perusahaan</label>
+                          <input type="text" id="nama" name="nama" placeholder="Masukan nama alat" class="form-control" required>
                       </div>
                       <div class="form-group">
-                          <label for="gambar" class=" form-control-label">Masukan Gambar</label>
-                          <input type="file" id="filename" name="filename" placeholder="Masukan gambar" class="form-control" required multiple>
+                          <label for="no_telepon" class=" form-control-label">No Telepon</label>
+                          <input type="number" id="no_telepon" name="no_telepon" placeholder="Masukan no telepon" class="form-control">
                       </div>
                       <div class="form-group">
-                          <label for="Merk" class=" form-control-label">Merk/Tipe</label>
-                          <input type="text" id="merk" name="merk" placeholder="Merk" class="form-control" required>
-                      </div>
-                      <div class="form-group">
-                          <label for="nomor_seri" class=" form-control-label">Nomor Seri</label>
-                          <input type="text" id="nomor_seri" name="nomor_seri" placeholder="Masukan nomor seri" class="form-control" required>
-                      </div>
-                      <div class="form-group">
-                          <div class="row">
-                              <div class="col">
-                                  <label for="kapasitas_range" class=" form-control-label">Kapasitas Rage</label>
-                                  <input type="text" id="kapasitas" name="kapasitas" placeholder="Kapasitas" class="form-control" required>
-                              </div>
-                              <div class="col">
-                                  <label for="kelas" class=" form-control-label">Kelas</label>
-                                  <input type="text" id="kelas" name="kelas" placeholder="Kelas" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <div class="row">
-                              <div class="col">
-                                  <label for="nomor_inventaris" class=" form-control-label">Nomor Inventaris</label>
-                                  <input type="text" id="nomor_inventaris" name="nomor_inventaris" placeholder="Masukan nomor inventaris" class="form-control" required>
-                              </div>
-                              <div class="col">
-                                  <label for="jumlah" class=" form-control-label">Jumlah</label>
-                                  <input type="text" id="jumlah" name="jumlah" placeholder="Masukan jumlah" class="form-control" required>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="internal" class=" form-control-label">Internal</label>
-                          <input type="text" id="internal" name="internal" placeholder="Internal" class="form-control" required>
-                      </div>
-                      <div class="form-group">
-                          <label for="eksternal" class=" form-control-label">Eksternal</label>
-                          <input type="text" id="eksternal" name="eksternal" placeholder="Eksternal" class="form-control" required>
+                        <label for="exampleFormControlTextarea1">Alamat</label>
+                        <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
                       </div>
                   </div>
               </div>
@@ -228,20 +179,8 @@
 <script src="{{asset('assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('assets/js/init/datatables-init.js')}}"></script>
 {{-- <script src="{{asset('assets/js/datepicker.js')}}"></script> --}}
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/javascript">    
 (function ($) {
-
-  // select 2
-
-  $('#nama_alat_ukur').on('change',function(){
-    var id_alat = $(this).find(':selected').attr('data-id');
-    $('#id_alat').val(id_alat);
-    console.log(id_alat);
-
-  })
-  
 
   // image view
   var modal = document.getElementById("ImageModal");
@@ -266,6 +205,7 @@
   $('.save_form').click(function(){
 
     let id = $(this).attr('id')
+
     if ($(this).attr('action') !== 'edit') {
       $('#form_add_data').submit();
     } else {
@@ -279,25 +219,35 @@
         confirmButtonText: 'Update!'
       }).then((result) => {
         if (result.value) {
-          let id = $(this).attr('id')
-          let url = "{{url('lab-pengujian/edit-data')}}"+'/'+id+"";
-          window.location.href = url;
-          // console.log(url);
-          // $.ajax({
-          //   url : url,
-          //   method : 'GET',
-          //   success: function(data) {                
-          //     if (data.message == 'success') {
-          //       Swal.fire(
-          //         'Terupdate!',
-          //         'Data Berhasil Diupdate.',
-          //         'success'
-          //       )
-          //       // table_pengujian.row().remove().draw()
-          //       // i = 0;
-          //       }
-          //     }
-          // })
+            var id = $(this).attr('id')
+            nama = $('#nama').val()
+            alamat = $('#alamat').val()
+            no_telepon = $('#no_telepon').val()
+          let url = "{{url('data-eksternal/update-data')}}"+'/'+id+"";
+        //   window.location.href = url;
+            data = {
+                id : id,
+                nama : nama,
+                alamat : alamat,
+                no_telepon : no_telepon
+            }
+          console.log(url);
+          $.ajax({
+            url : url,
+            method : 'POST',
+            data : {_token:"{{ csrf_token() }}",data},
+            success: function(data) {                
+                if (data == 'success') {
+                Swal.fire(
+                  'Terupdate!',
+                  'Data Berhasil Diupdate.',
+                  'success'
+                )
+                var url =  "{{url('data-eksternal')}}";
+                window.location.href = url;
+                }
+              }
+          })
         }
       })
 
@@ -310,14 +260,14 @@
 
     var i = 1;
     
-    var table_pengujian = $('.table_pengujian').DataTable({
+    var table_data_eksternal = $('.table_data_eksternal').DataTable({
         destroy: true,
     });
     getTable();
     
     function getTable() {
         $.ajax({
-        url : "{{url('get-table-pengujian')}}",
+        url : "{{url('get-data-eksternal')}}",
         method : 'GET',
         complete : function(data){
         if (data.responseJSON.data === null || data.responseJSON.data === undefined) {
@@ -326,23 +276,14 @@
             $.each(data.responseJSON.data,(key,val)=>{
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
-                table_pengujian.row.add({
-                0:val.nama_alat_ukur,
-                1:val.merk,
-                2:val.nomor_seri,
-                3:val.kapasitas,
-                4:val.kelas,
-                5:val.nomor_inventaris,
-                6:val.jumlah,
-                7:val.internal,
-                8:val.eksternal,
-                9:""+
+                table_data_eksternal.row.add({
+                0:val.nama,
+                1:val.alamat,
+                2:val.no_telepon,
+                3:""+
                 "<div class='col-action'>" +
-                    "<button data-toggle='modal' data-target='#myModal' class='edit' id='"+val.id+"' >" +
+                    "<button data-toggle='modal' data-target='#myModalEksternal' class='edit' id='"+val.id+"' >" +
                       "<i class='fa fa-edit'></i>" +
-                    "</button>" +
-                    "<button data-toggle='modal' data-target='#ModalViewData' class='view' id='"+val.id+"' >" +
-                      "<i class='fa fa-eye'></i>" +
                     "</button>" +
                     "<button class='delete' id='"+val.id+"' >" +
                       "<i class='fa fa-trash-o'></i>" +
@@ -351,7 +292,7 @@
                 10:""+
                 "<img src='"+url+"' class='myImg'>",
               })
-              table_pengujian.draw()
+              table_data_eksternal.draw()
             })
             }
         }
@@ -359,64 +300,39 @@
     }
 
     function clear_table() {
-      $('#nama_alat_ukur').val('')
-      $('#merk').val('')
-      $('#nomor_seri').val('')
-      $('#kapasitas').val('')
-      $('#kelas').val('')
-      $('#nomor_inventaris').val('')
-      $('#jumlah').val('')
-      $('#internal').val('')
-      $('#eksternal').val('')
+      $('#nama').val('')
+      $('#alamat').val('')
+      $('#no_telepon').val('')
     }
 
-    table_pengujian.on('click', 'tbody tr td div button', function(){
+    table_data_eksternal.on('click', 'tbody tr td div button', function(){
     if ($(this).attr('class') === 'edit') {
       let id = $(this).attr('id');
       console.log('click edit',id);
         
-      var data = table_pengujian.row($(this).parents('tr')).data()
+      var data = table_data_eksternal.row($(this).parents('tr')).data()
       // console.log(data);
-      var nama_alat_ukur = data[0]
-      merk = data[1]
-      nomor_seri = data[2]
-      kapasitas = data[3]
-      kelas = data[4]
-      nomor_inventaris = data[5]
-      jumlah = data[6]
-      internal = data[7]
-      eksternal = data[8]
+      var nama = data[0]
+      alamat = data[1]
+      no_telepon = data[2]
       
-      var indexRow = table_pengujian.row($(this).parents('tr')).index()
+      var indexRow = table_data_eksternal.row($(this).parents('tr')).index()
       
-      $('#nama_alat_ukur').val(nama_alat_ukur)
-      $('#merk').val(merk)
-      $('#nomor_seri').val(nomor_seri)
-      $('#kapasitas').val(kapasitas)
-      $('#kelas').val(kelas)
-      $('#nomor_inventaris').val(nomor_inventaris)
-      $('#jumlah').val(jumlah)
-      $('#internal').val(internal)
-      $('#eksternal').val(eksternal)
-
+      $('#nama').val(nama)
+      $('#alamat').val(alamat)
+      $('#no_telepon').val(no_telepon)
+      
       $('.save_form').attr('action','edit')
       $('.save_form').attr('id',id)
     } else if ($(this).attr('class') === 'view') {
         let id = $(this).attr('id');
         // console.log('view', id);      
           
-        var data = table_pengujian.row($(this).parents('tr')).data()
-        console.log('view data ',data);
-        var nama_alat_ukur = data[0]
-        merk = data[1]
-        nomor_seri = data[2]
-        kapasitas = data[3]
-        kelas = data[4]
-        nomor_inventaris = data[5]
-        jumlah = data[6]
-        internal = data[7]
-        eksternal = data[8]
-        gambar = data[10]
+        var data = table_data_eksternal.row($(this).parents('tr')).data()
+        // console.log('view data ',data);
+        var nama = data[0]
+        alamat = data[1]
+        no_telepon = data[2]
 
         $('.v_nama_alat_ukur').html(nama_alat_ukur)
         $('.v_merk').html(merk)
@@ -441,17 +357,17 @@
       }).then((result) => {
         if (result.value) {
           let id = $(this).attr('id')
-          let url = "{{url('lab-pengujian/update-data')}}"+'/'+id+"";
+          let url = "{{url('data-eksternal/update-data')}}"+'/'+id+"";
           // console.log(url);
           var data = {
             id : id
           }
           $.ajax({
             url : url,
-            method : 'GET',
+            method : 'POST',
             data : data,
             success: function(data) {                
-              window.location.href = url;
+                getTable()
             }
           })
         }
@@ -468,7 +384,7 @@
       }).then((result) => {
         if (result.value) {
           let id = $(this).attr('id')
-          let url = "{{url('lab-pengujian/delete-data')}}"+'/'+id+"";
+          let url = "{{url('data-eksternal/delete-data')}}"+'/'+id+"";
           // console.log(url);
           $.ajax({
             url : url,
@@ -480,8 +396,8 @@
                   'Data Berhasil Terhapus.',
                   'success'
                 )
-                table_pengujian.row().remove().draw()
-                i = 0;
+                var url =  "{{url('data-eksternal')}}";
+                window.location.href = url;
                 }
               }
           })

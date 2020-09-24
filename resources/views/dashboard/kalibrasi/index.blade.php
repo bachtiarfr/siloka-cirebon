@@ -60,15 +60,8 @@
                     <form id="form_add_data" action="{{url('lab-pengujian/insert-data')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <div class="form-group">
-                        <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
-                        <select class="form-control select2" id="nama_alat_ukur" name="nama_alat_ukur">
-                          @foreach ($alat as $item)
-                          <option value="{{$item->nama}}" data-id="{{$item->id}}">{{$item->nama}}</option>
-                              
-                          @endforeach  
-                          </select>
-                          <input type="hidden" id="id_alat" name="id_alat">
-                          {{-- <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required> --}}
+                          <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
+                          <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required>
                       </div>
                       <div class="form-group">
                           <label for="gambar" class=" form-control-label">Masukan Gambar</label>
@@ -228,20 +221,8 @@
 <script src="{{asset('assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
 <script src="{{asset('assets/js/init/datatables-init.js')}}"></script>
 {{-- <script src="{{asset('assets/js/datepicker.js')}}"></script> --}}
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/javascript">    
 (function ($) {
-
-  // select 2
-
-  $('#nama_alat_ukur').on('change',function(){
-    var id_alat = $(this).find(':selected').attr('data-id');
-    $('#id_alat').val(id_alat);
-    console.log(id_alat);
-
-  })
-  
 
   // image view
   var modal = document.getElementById("ImageModal");
