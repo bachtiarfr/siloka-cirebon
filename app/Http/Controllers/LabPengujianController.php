@@ -67,7 +67,7 @@ class LabPengujianController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $images = array();
 
         $this->validate($request, [
@@ -78,7 +78,7 @@ class LabPengujianController extends Controller
         $insert_data = new AlatStandar;
         $insert_data->nama_alat_ukur = $request->input('nama_alat_ukur'); 
         $insert_data->merk = $request->input('merk'); 
-        $insert_data->merk = $request->input('id_alat'); 
+        $insert_data->id_alat = $request->input('id_alat'); 
         $insert_data->nomor_seri = $request->input('nomor_seri'); 
         $insert_data->kapasitas = $request->input('kapasitas'); 
         $insert_data->kelas = $request->input('kelas'); 

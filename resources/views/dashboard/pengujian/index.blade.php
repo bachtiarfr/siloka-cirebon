@@ -85,7 +85,7 @@
                       <div class="form-group">
                           <div class="row">
                               <div class="col">
-                                  <label for="kapasitas_range" class=" form-control-label">Kapasitas Rage</label>
+                                  <label for="kapasitas_range" class=" form-control-label">Kapasitas Range</label>
                                   <input type="text" id="kapasitas" name="kapasitas" placeholder="Kapasitas" class="form-control" required>
                               </div>
                               <div class="col">
@@ -480,8 +480,8 @@
                   'Data Berhasil Terhapus.',
                   'success'
                 )
-                table_pengujian.row().remove().draw()
-                i = 0;
+                var url =  "{{url('data-eksternal')}}";
+                window.location.href = url;
                 }
               }
           })

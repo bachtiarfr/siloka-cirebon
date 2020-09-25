@@ -15,7 +15,7 @@ class CreateAlatStandarTable extends Migration
     {
         Schema::create('alat_standar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_alat');
+            $table->bigInteger('id_alat')->nullable();
             $table->string('nama_alat_ukur');
             $table->string('gambar');
             $table->string('merk');
