@@ -55,7 +55,7 @@
                       {{ csrf_field() }}
                       <div class="form-group">
                           <label for="nama" class=" form-control-label">Nama Perusahaan</label>
-                          <input type="text" id="nama" name="nama" placeholder="Masukan nama alat" class="form-control" required>
+                          <input type="text" id="nama" name="nama" placeholder="Masukan nama perusahaan" class="form-control" required>
                       </div>
                       <div class="form-group">
                           <label for="no_telepon" class=" form-control-label">No Telepon</label>
