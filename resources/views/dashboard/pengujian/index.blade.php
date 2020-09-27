@@ -22,6 +22,7 @@
                             <table class="table table-striped table-bordered table_pengujian">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama Alat Ukur</th>
                                         <th>Merk/Tipe</th>
                                         <th>Nomor Seri</th>
@@ -327,16 +328,17 @@
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
                 table_pengujian.row.add({
-                0:val.nama_alat_ukur,
-                1:val.merk,
-                2:val.nomor_seri,
-                3:val.kapasitas,
-                4:val.kelas,
-                5:val.nomor_inventaris,
-                6:val.jumlah,
-                7:val.internal,
-                8:val.eksternal,
-                9:""+
+                0:i,
+                1:val.nama_alat_ukur,
+                2:val.merk,
+                3:val.nomor_seri,
+                4:val.kapasitas,
+                5:val.kelas,
+                6:val.nomor_inventaris,
+                7:val.jumlah,
+                8:val.internal,
+                9:val.eksternal,
+                10:""+
                 "<div class='col-action'>" +
                     "<button data-toggle='modal' data-target='#myModal' class='edit' id='"+val.id+"' >" +
                       "<i class='fa fa-edit'></i>" +
@@ -348,10 +350,11 @@
                       "<i class='fa fa-trash-o'></i>" +
                     "</button>" +
                   "</div>",
-                10:""+
+                11:""+
                 "<img src='"+url+"' class='myImg'>",
               })
               table_pengujian.draw()
+              i++;
             })
             }
         }

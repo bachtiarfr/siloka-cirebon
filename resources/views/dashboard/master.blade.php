@@ -202,7 +202,7 @@
                     <div class="col-lg-3 col-md-6">
                         <a href="{{url('/lab-kalibrasi')}}">
                             <div class="card">
-                                <div class="card-body  lab-menu">
+                                <div class="card-body lab-menu">
                                     <div class="stat-widget-five">
                                         <div class="stat-icon dib flat-color-2">
                                             <img src="{{asset('assets/images/noun_balance_2486642 (1) 1.svg')}}" alt="" style="height: 70px">
@@ -220,29 +220,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6">
-                        <a href="{{url('/lap-data-peralatan')}}">
-                            <div class="card">
-                                <div class="card-body  lab-menu">
-                                    <div class="stat-widget-five">
-                                        <div class="stat-icon dib flat-color-3">
-                                            <img src="{{asset('assets/images/report.svg')}}" alt="" style="height: 70px">
-                                        </div>
-                                        <div class="stat-content">
-                                            <div class="text-left dib">
-                                                <div class="stat-text">Laporan</div>
-                                                <div class="stat-heading">Data Peralatan</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
                         <a href="{{url('/early-warning-system')}}">
                             <div class="card">
-                                <div class="card-body  lab-menu">
+                                <div class="card-body lab-menu">
                                     <div class="stat-widget-five">
                                         <div class="stat-icon dib flat-color-4">
                                             <img src="{{asset('assets/images/warning.svg')}}" alt="" style="height: 70px">
@@ -251,6 +231,26 @@
                                             <div class="text-left dib">
                                                 <div class="stat-text">Early Warning</div>
                                                 <div class="stat-heading">Systems</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6" id="btn-export">
+                        <a href="#">
+                            <div class="card">
+                                <div class="card-body lab-menu">
+                                    <div class="stat-widget-five">
+                                        <div class="stat-icon dib flat-color-3">
+                                            <img src="{{asset('assets/images/report.svg')}}" alt="" style="height: 70px">
+                                        </div>
+                                        <div class="stat-content">
+                                            <div class="text-left dib">
+                                                <div class="stat-text">Laporan</div>
+                                                <div class="stat-heading">Data Peralatan</div>
                                             </div>
                                         </div>
                                     </div>
@@ -317,4 +317,31 @@
     <script src="{{asset('assets/js/init/datatables-init.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </body>
+<script>
+(function ($) {
+
+    $('#btn-export').on('click', function(){
+        Swal.fire({
+        title: 'Mau Export Data Laporan Dalam Bentuk Apa?',
+        // text: "Setelah dihapus, data produk ini akan hilang!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "PDF",
+        confirmButtonText: 'Excel'
+      }).then((result) => {
+        if (result.value) {
+            var url =  "{{url('lab-pengujian/export_excel')}}";
+            window.location.href = url;
+        } else {
+            var url =  "{{url('lab-pengujian/export_pdf')}}";
+            window.location.href = url;
+        }
+      })   
+    })
+
+})(jQuery);
+
+</script>
 </html>

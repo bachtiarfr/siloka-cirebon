@@ -26,6 +26,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/delete-data/{id}', 'LabPengujianController@destroy')->name('lab-pengujian.delete-data');
         Route::get('/edit-data/{id}', 'LabPengujianController@edit')->name('lab-pengujian.edit-data');
         Route::post('/update-data/{id}', 'LabPengujianController@update')->name('lab-pengujian.update-data');
+        // EXPORT EXCEL
+        Route::get('/export_excel', 'LabPengujianController@export_excel')->name('export_excel');
+        // EXPORT PDF
+        Route::get('/export_pdf', 'LabPengujianController@export_pdf')->name('export_pdf');
+
     });
 });
 

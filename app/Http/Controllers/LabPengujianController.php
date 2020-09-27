@@ -9,6 +9,11 @@ use App\MasterData;
 use Session;
 use File;
 
+use PDF;
+
+use App\Exports\DataLaporan;
+use Maatwebsite\Excel\Facades\Excel;
+
 class LabPengujianController extends Controller
 {
     /**
@@ -99,6 +104,19 @@ class LabPengujianController extends Controller
             // Session::flash("error", "Gagal Menambah Product");
             return redirect()->to("/lab-pengujian");
         }    
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new DataLaporan, 'laporan.xlsx');
+    }
+
+    public function export_pdf()
+    {
+        $data = DB::table('lab-cirebon.alat_standar')->get();
+ 
+    	$pdf = PDF::loadview('dashboard.pengujian.laporan_pdf',['data'=>$data]);
+        return $pdf->stream();
     }
 
     /**

@@ -2587,3 +2587,7 @@ button.edit:hover, button.delete:hover, button.view:hover {
 .h4, h4 {
   font-size: 1rem;
 }
+
+td {
+  text-align: center;
+}
