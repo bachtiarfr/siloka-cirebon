@@ -8,24 +8,19 @@
         <div class="row">
             
             <div class="col-md-12">
-                <a href="#" data-toggle="modal" data-target="#myModalEksternal">
-                    <span class="badge badge-success mb-3">Masukan Data Baru</span>
-                </a>
-                <div class="form-group" id="gambar">
-                </div>
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Daftar Perusahaan Eksternal</strong>
+                        <strong class="card-title">Daftar Alat</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table_data_eksternal">
+                            <table class="table table-striped table-bordered table_master">
                                 <thead>
                                     <tr>
-                                        <th>Nama </th>
-                                        <th>Alamat</th>
-                                        <th>No Telepon</th>
-                                        <th>Action</th>
+                                        <th>No</th>
+                                        <th>Nama Alat</th>
+                                        <th>Tanggal Kalibrasi</th>
+                                        {{-- <th>Action</th> --}}
                                     </tr>
                                 </thead>
                             </table>
@@ -38,10 +33,11 @@
 </div><!-- .content -->
 
 <!-- Modal -->
-<div class="modal fade modal-primary" id="myModalEksternal">
+<div class="modal fade modal-primary" id="myModalMasterData">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </button>
@@ -50,19 +46,11 @@
           <div class="col-lg-12">
               <div class="card">
                   <div class="card-body card-block">
-                    <form id="form_add_data" action="{{url('data-eksternal/insert-data')}}" method="POST" enctype="multipart/form-data">
+                    <form id="form_add_data" action="{{url('master-data/insert-data')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <div class="form-group">
-                          <label for="nama" class=" form-control-label">Nama Perusahaan</label>
-                          <input type="text" id="nama" name="nama" placeholder="Masukan nama perusahaan" class="form-control" required>
-                      </div>
-                      <div class="form-group">
-                          <label for="no_telepon" class=" form-control-label">No Telepon</label>
-                          <input type="number" id="no_telepon" name="no_telepon" placeholder="Masukan no telepon" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                          <label for="nama" class=" form-control-label">Nama Alat</label>
+                          <input type="text" id="nama" name="nama" placeholder="Masukan nama alat" class="form-control" required>
                       </div>
                   </div>
               </div>
@@ -220,15 +208,12 @@
         if (result.value) {
             var id = $(this).attr('id')
             nama = $('#nama').val()
-            alamat = $('#alamat').val()
-            no_telepon = $('#no_telepon').val()
-          let url = "{{url('data-eksternal/update-data')}}"+'/'+id+"";
+            
+          let url = "{{url('master-data/update-data')}}"+'/'+id+"";
         //   window.location.href = url;
             data = {
                 id : id,
                 nama : nama,
-                alamat : alamat,
-                no_telepon : no_telepon
             }
           console.log(url);
           $.ajax({
@@ -242,7 +227,7 @@
                   'Data Berhasil Diupdate.',
                   'success'
                 )
-                var url =  "{{url('data-eksternal')}}";
+                var url =  "{{url('master-data')}}";
                 window.location.href = url;
                 }
               }
@@ -259,39 +244,42 @@
 
     var i = 1;
     
-    var table_data_eksternal = $('.table_data_eksternal').DataTable({
+    var table_master = $('.table_master').DataTable({
         destroy: true,
     });
     getTable();
     
     function getTable() {
         $.ajax({
-        url : "{{url('get-data-eksternal')}}",
+        url : "{{url('get-early-warning-data')}}",
         method : 'GET',
         complete : function(data){
         if (data.responseJSON.data === null || data.responseJSON.data === undefined) {
         console.log('kosong');          
         } else {
             $.each(data.responseJSON.data,(key,val)=>{
+
+              var warning_sys = new Date(val.tanggal_kalibrasi);
+              warning_sys.setDate(warning_sys.getDate()+330);
+
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
-                table_data_eksternal.row.add({
-                0:val.nama,
-                1:val.alamat,
-                2:val.no_telepon,
-                3:""+
-                "<div class='col-action'>" +
-                    "<button data-toggle='modal' data-target='#myModalEksternal' class='edit' id='"+val.id+"' >" +
-                      "<i class='fa fa-edit'></i>" +
-                    "</button>" +
-                    "<button class='delete' id='"+val.id+"' >" +
-                      "<i class='fa fa-trash-o'></i>" +
-                    "</button>" +
-                  "</div>",
-                10:""+
-                "<img src='"+url+"' class='myImg'>",
+                table_master.row.add({
+                0:i, 
+                1:val.nama_alat, 
+                2:warning_sys, 
+                // 3:""+
+                // "<div class='col-action'>" +
+                //     "<button data-toggle='modal' data-target='#myModalMasterData' class='edit' id='"+val.id+"' >" +
+                //       "<i class='fa fa-edit'></i>" +
+                //     "</button>" +
+                //     "<button class='delete' id='"+val.id+"' >" +
+                //       "<i class='fa fa-trash-o'></i>" +
+                //     "</button>" +
+                //   "</div>",
               })
-              table_data_eksternal.draw()
+              table_master.draw()
+              i++
             })
             }
         }
@@ -304,18 +292,18 @@
       $('#no_telepon').val('')
     }
 
-    table_data_eksternal.on('click', 'tbody tr td div button', function(){
+    table_master.on('click', 'tbody tr td div button', function(){
     if ($(this).attr('class') === 'edit') {
       let id = $(this).attr('id');
       console.log('click edit',id);
         
-      var data = table_data_eksternal.row($(this).parents('tr')).data()
+      var data = table_master.row($(this).parents('tr')).data()
       // console.log(data);
       var nama = data[0]
       alamat = data[1]
       no_telepon = data[2]
       
-      var indexRow = table_data_eksternal.row($(this).parents('tr')).index()
+      var indexRow = table_master.row($(this).parents('tr')).index()
       
       $('#nama').val(nama)
       $('#alamat').val(alamat)
@@ -327,7 +315,7 @@
         let id = $(this).attr('id');
         // console.log('view', id);      
           
-        var data = table_data_eksternal.row($(this).parents('tr')).data()
+        var data = table_master.row($(this).parents('tr')).data()
         // console.log('view data ',data);
         var nama = data[0]
         alamat = data[1]
@@ -356,7 +344,7 @@
       }).then((result) => {
         if (result.value) {
           let id = $(this).attr('id')
-          let url = "{{url('data-eksternal/update-data')}}"+'/'+id+"";
+          let url = "{{url('master-data/update-data')}}"+'/'+id+"";
           // console.log(url);
           var data = {
             id : id
@@ -383,7 +371,7 @@
       }).then((result) => {
         if (result.value) {
           let id = $(this).attr('id')
-          let url = "{{url('data-eksternal/delete-data')}}"+'/'+id+"";
+          let url = "{{url('master-data/delete-data')}}"+'/'+id+"";
           // console.log(url);
           $.ajax({
             url : url,
@@ -395,7 +383,7 @@
                   'Data Berhasil Terhapus.',
                   'success'
                 )
-                var url =  "{{url('data-eksternal')}}";
+                var url =  "{{url('master-data')}}";
                 window.location.href = url;
                 }
               }

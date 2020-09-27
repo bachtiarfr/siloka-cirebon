@@ -60,9 +60,10 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/get-table-pengujian', 'LabPengujianController@getTable')->name('get-table');
 Route::get('/get-data-eksternal', 'DataEksternalController@getTable')->name('get-table-data-eksternal');
 Route::get('/get-master-data', 'MasterDataController@getTable')->name('get-table-master-data');
+Route::get('/get-early-warning-data', 'MasterDataController@getEarlyWarning')->name('get-table-early-warning-data');
 
 
 Route::get('/lab-kalibrasi', 'LabKalibrasiController@index')->name('lab-kalibrasi');
 Route::get('/lap-data-peralatan', 'DataPeralatanController@index')->name('data-peralatan');
-Route::get('/early-warning-system', 'EarlyWarningController@index')->name('early-warning');
+Route::get('/early-warning-system', 'MasterDataController@earlyWarning')->name('early-warning');
 

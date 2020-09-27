@@ -2588,6 +2588,6 @@ button.edit:hover, button.delete:hover, button.view:hover {
   font-size: 1rem;
 }
 
-td {
+td, th {
   text-align: center;
 }

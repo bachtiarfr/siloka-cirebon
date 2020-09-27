@@ -17,6 +17,7 @@ class CreateAlatStandarTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_alat')->nullable();
             $table->string('nama_alat_ukur');
+            // $table->timestamp('tanggal_kalibrasi')->useCurrent();
             $table->string('gambar');
             $table->string('merk');
             $table->string('nomor_seri');

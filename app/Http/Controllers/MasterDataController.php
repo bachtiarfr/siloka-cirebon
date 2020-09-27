@@ -31,6 +31,14 @@ class MasterDataController extends Controller
         return view('dashboard.master-data.index');
     }
 
+    public function earlyWarning()
+    {
+        $data = DB::table('lab-cirebon.data_kalibrasis')->get();
+        return view('dashboard.early-warning.index', compact('data'));
+
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,6 +72,21 @@ class MasterDataController extends Controller
     public function getTable() {
         $out = [];
         $data = DB::table('lab-cirebon.master_data')->get();
+        if (count($data) > 0) {
+            $out['state'] = true;
+            $out['message'] = 'success';
+            $out['data'] = $data;
+        } else {
+            $out['state'] = false;
+            $out['message'] = 'empty';
+            $out['data'] = null;
+        }
+        return $out;
+    }
+
+    public function getEarlyWarning() {
+        $out = [];
+        $data = DB::table('lab-cirebon.data_kalibrasis')->get();
         if (count($data) > 0) {
             $out['state'] = true;
             $out['message'] = 'success';

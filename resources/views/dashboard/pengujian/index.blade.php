@@ -63,12 +63,12 @@
                       <div class="form-group">
                         <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
                         <select class="form-control select2" id="nama_alat_ukur" name="nama_alat_ukur">
+                          <option value="" selected>Pilih Salah Satu Data</option>
                           @foreach ($alat as $item)
                           <option value="{{$item->nama}}" data-id="{{$item->id}}">{{$item->nama}}</option>
-                              
                           @endforeach  
                           </select>
-                          <input type="hidden" id="id_alat" name="id_alat">
+                          <input type="text" id="id_alat" name="id_alat" class="form-control" hidden>
                           {{-- <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required> --}}
                       </div>
                       <div class="form-group">
@@ -81,7 +81,7 @@
                       </div>
                       <div class="form-group">
                           <label for="nomor_seri" class=" form-control-label">Nomor Seri</label>
-                          <input type="text" id="nomor_seri" name="nomor_seri" placeholder="Masukan nomor seri" class="form-control" required>
+                          <input type="number" id="nomor_seri" name="nomor_seri" placeholder="Masukan nomor seri" class="form-control" required>
                       </div>
                       <div class="form-group">
                           <div class="row">
@@ -103,17 +103,18 @@
                               </div>
                               <div class="col">
                                   <label for="jumlah" class=" form-control-label">Jumlah</label>
-                                  <input type="text" id="jumlah" name="jumlah" placeholder="Masukan jumlah" class="form-control" required>
+                                  <input type="number" id="jumlah" name="jumlah" placeholder="Masukan jumlah" class="form-control" required>
                               </div>
                           </div>
                       </div>
                       <div class="form-group">
-                          <label for="internal" class=" form-control-label">Internal</label>
-                          <input type="text" id="internal" name="internal" placeholder="Internal" class="form-control" required>
+                        <label for="internal" class=" form-control-label">Internal</label>
+                        <input type="text" id="internal" name="internal" placeholder="Internal" class="form-control" required>
+
                       </div>
                       <div class="form-group">
-                          <label for="eksternal" class=" form-control-label">Eksternal</label>
-                          <input type="text" id="eksternal" name="eksternal" placeholder="Eksternal" class="form-control" required>
+                        <label for="eksternal" class=" form-control-label">Eksternal</label>
+                        <input type="text" id="eksternal" name="eksternal" placeholder="Eksternal" class="form-control" required>
                       </div>
                   </div>
               </div>
@@ -236,8 +237,8 @@
 
   // select 2
 
-  $('#nama_alat_ukur').on('change',function(){
-    var id_alat = $(this).find(':selected').attr('data-id');
+  $('select').on('change',function(){
+    var id_alat = $(this).find(':selected').data('id');
     $('#id_alat').val(id_alat);
     console.log(id_alat);
 
@@ -351,7 +352,24 @@
                     "</button>" +
                   "</div>",
                 11:""+
-                "<img src='"+url+"' class='myImg'>",
+                "<div class='view overlay'>"+
+                "<div id='carouselExampleControls' class='carousel slide' data-ride='carousel'>"+
+                  "<div class='carousel-inner'>"+
+                    "<div class='carousel-item active'>"+
+                      "<img src='"+url+"' class='img-fluid myImg' alt='Sample image for first version of blog listing'>"+
+                    "</div>"+
+                  "</div>"+
+                  "<a class='carousel-control-prev' href='#carouselExampleControls' role='button' data-slide='prev'>"+
+                    "<span class='carousel-control-prev-icon' aria-hidden='true'></span>"+
+                    "<span class='sr-only'>Previous</span>"+
+                  "</a>"+
+                  "<a class='carousel-control-next' href='#carouselExampleControls' role='button' data-slide='next'>"+
+                    "<span class='carousel-control-next-icon' aria-hidden='true'></span>"+
+                    "<span class='sr-only'>Next</span>"+
+                  "</a>"+
+                "</div>"+
+              "</div>",
+                // "<img src='"+url+"' class='myImg'>",
               })
               table_pengujian.draw()
               i++;
@@ -380,15 +398,15 @@
         
       var data = table_pengujian.row($(this).parents('tr')).data()
       // console.log(data);
-      var nama_alat_ukur = data[0]
-      merk = data[1]
-      nomor_seri = data[2]
-      kapasitas = data[3]
-      kelas = data[4]
-      nomor_inventaris = data[5]
-      jumlah = data[6]
-      internal = data[7]
-      eksternal = data[8]
+      var nama_alat_ukur = data[1]
+      merk = data[2]
+      nomor_seri = data[3]
+      kapasitas = data[4]
+      kelas = data[5]
+      nomor_inventaris = data[6]
+      jumlah = data[7]
+      internal = data[8]
+      eksternal = data[9]
       
       var indexRow = table_pengujian.row($(this).parents('tr')).index()
       
@@ -410,16 +428,16 @@
           
         var data = table_pengujian.row($(this).parents('tr')).data()
         console.log('view data ',data);
-        var nama_alat_ukur = data[0]
-        merk = data[1]
-        nomor_seri = data[2]
-        kapasitas = data[3]
-        kelas = data[4]
-        nomor_inventaris = data[5]
-        jumlah = data[6]
-        internal = data[7]
-        eksternal = data[8]
-        gambar = data[10]
+        var nama_alat_ukur = data[1]
+        merk = data[2]
+        nomor_seri = data[3]
+        kapasitas = data[4]
+        kelas = data[5]
+        nomor_inventaris = data[6]
+        jumlah = data[7]
+        internal = data[8]
+        eksternal = data[9]
+        gambar = data[11]
 
         $('.v_nama_alat_ukur').html(nama_alat_ukur)
         $('.v_merk').html(merk)

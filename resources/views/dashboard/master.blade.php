@@ -99,7 +99,9 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./">SILOKA</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{asset('assets/images/logo1.png')}}" alt="LOGO">
+                    </a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -114,34 +116,13 @@
                             </form>
                         </div>
 
-                        <div class="dropdown for-notification">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bell"></i>
-                                <span class="count bg-danger">3</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="notification">
-                                <p class="red">You have 3 Notification</p>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-check"></i>
-                                    <p>Server #1 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-info"></i>
-                                    <p>Server #2 overloaded.</p>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <i class="fa fa-warning"></i>
-                                    <p>Server #3 overloaded.</p>
-                                </a>
-                            </div>
-                        </div>
                         {{ Auth::user()->name }}
 
                     </div>
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="{{asset('assets/images/admin-icon.jpg')}}" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="{{asset('assets/images/user.png')}}" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -316,6 +297,7 @@
     <script src="{{asset('assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('assets/js/init/datatables-init.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
 </body>
 <script>
 (function ($) {
@@ -329,6 +311,7 @@
         confirmButtonColor: '#28a745',
         cancelButtonColor: '#d33',
         cancelButtonText: "PDF",
+        allowOutsideClick: false,
         confirmButtonText: 'Excel'
       }).then((result) => {
         if (result.value) {
