@@ -13,18 +13,51 @@
                         <strong class="card-title">Data Jadwal Kalibrasi Peralatan</strong>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table_master">
+                      <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Laboratorium Pengujian</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Laboratorium Kalibrasi</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <div class="table-responsive">
+                            <a href="{{url('data-pengujian/export_pdf')}}">
+                              <span class="badge badge-danger mb-3">Export PDF</span>
+                            </a>
+                              <table class="table table-striped table-bordered table_master">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Alat</th>
-                                        <th>Tanggal Kalibrasi</th>
-                                        {{-- <th>Action</th> --}}
+                                        <th>Tanggal di Kalibrasi</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                             </table>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="table-responsive">
+                          <a href="{{url('data-kalibrasi/export_pdf')}}">
+                            <span class="badge badge-danger mb-3">Export PDF</span>
+                          </a>
+                          <table class="table table-striped table-bordered table_master2">
+                              <thead>
+                                  <tr>
+                                      <th>No</th>
+                                      <th>Nama Alat</th>
+                                      <th>Tanggal Kalibrasi</th>
+                                      <th>Action</th>
+                                  </tr>
+                              </thead>
+                          </table>
                         </div>
+                      </div>
+                      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -69,7 +102,7 @@
 
 <!-- Modal detail data -->
 <div class="modal fade" id="ModalViewData" tabindex="-1" role="dialog" aria-labelledby="ModalViewDataLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="border-bottom: 0px">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -81,65 +114,28 @@
         <div class="jumbotron text-center hoverable p-4">
 
           <!-- Grid row -->
-          <div class="row">
-
-            <!-- Grid column -->
-            <div class="col-md-5 offset-md-1 mx-3 my-3">
-
-              <!-- Featured image -->
-              <div class="view overlay">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid myImg" alt="Sample image for first version of blog listing">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
+          <div class="container text-left">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="font-weight-normal mb-3">Tanggal Kalibrasi Ulang :</h3>
+                <h4 class="h4 v_tanggal"></h4>
               </div>
-
+              <!-- Grid column -->
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-3 text-md-left ml-3 mt-3">
-              <p class="font-weight-normal m-0"> Nama Alat Ukur : </p>
-              <h4 class="h4 v_nama_alat_ukur"></h4>
-              <p class="font-weight-normal m-0"> Merk / Tipe : </p>
-              <h4 class="h4 v_merk"></h4>
-              <p class="font-weight-normal m-0"> Nomor Seri : </p>
-              <h4 class="h4 v_nomor_seri"></h4>
-              <p class="font-weight-normal m-0"> Kapasitas : </p>
-              <h4 class="h4 v_kapasitas"></h4>
-              <p class="font-weight-normal m-0"> Kelas : </p>
-              <h4 class="h4 v_kelas"></h4>
-
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="font-weight-normal mb-3">Watu Early Warning System :</h3>
+                <h4 class="h4 v_early_warning"></h4>
+              </div>
+              <!-- Grid column -->
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div class="col-md-3 text-md-left ml-3 mt-3">
-              <p class="font-weight-normal m-0"> Nomor Inventaris : </p>
-              <h4 class="h4 v_nomor_inventaris"></h4>
-              <p class="font-weight-normal m-0"> Internal : </p>
-              <h4 class="h4 v_internal"></h4>
-              <p class="font-weight-normal m-0"> Eksternal : </p>
-              <h4 class="h4 v_eksternal"></h4>
-
-            </div>
-            <!-- Grid column -->
-
           </div>
           <!-- Grid row -->
-
+          
         </div>
+        <button class="col-md-12 btn-warning" id="play">
+          Nyalakan Alarm Sekarang
+        </button>
         <!-- News jumbotron -->
       </div>
     </div>
@@ -168,6 +164,48 @@
 {{-- <script src="{{asset('assets/js/datepicker.js')}}"></script> --}}
 <script type="text/javascript">    
 (function ($) {
+
+  EarlyWarningSystem()
+
+  function EarlyWarningSystem() {
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', 'http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3');
+    
+    audioElement.addEventListener('ended', function() {
+        this.play();
+    }, false);
+    
+    audioElement.addEventListener("canplay",function(){
+        $("#length").text("Duration:" + audioElement.duration + " seconds");
+        $("#source").text("Source:" + audioElement.src);
+        $("#status").text("Status: Ready to play").css("color","green");
+    });
+    
+    audioElement.addEventListener("timeupdate",function(){
+        $("#currentTime").text("Current second:" + audioElement.currentTime);
+    });
+    
+    $('#play').click(function() {
+        audioElement.play();
+        Swal.fire({
+          title: 'STOP?',
+          text: "STOP ALARM!",
+          icon: 'warning',
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Stop Alarm!'
+        }).then((result) => {
+          audioElement.pause();
+          audioElement.currentTime = 0;
+        })
+      });
+    
+    $('#stop').click(function() {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+        $("#status").text("Status: Paused");
+    });    
+  }
 
   // image view
   var modal = document.getElementById("ImageModal");
@@ -247,9 +285,52 @@
     var table_master = $('.table_master').DataTable({
         destroy: true,
     });
+
+    var table_master2 = $('.table_master2').DataTable({
+        destroy: true,
+    });
+
     getTable();
+    getTable2();
     
     function getTable() {
+        $.ajax({
+        url : "{{url('get-early-warning-data2')}}",
+        method : 'GET',
+        complete : function(data){
+        if (data.responseJSON.data === null || data.responseJSON.data === undefined) {
+        console.log('kosong');          
+        } else {
+            $.each(data.responseJSON.data,(key,val)=>{
+
+              var kalibrasi = new Date(val.tanggal_kalibrasi);
+              var warning_sys = new Date(val.tanggal_kalibrasi);
+              warning_sys.setDate(warning_sys.getDate()+330);
+
+              var gambar = val.gambar
+              let url = "{{asset('assets/images')}}"+'/'+gambar+"";
+                table_master.row.add({
+                0:i, 
+                1:val.nama_alat, 
+                2:kalibrasi, 
+                3:""+
+                "<div class='col-action'>" +
+                    "<button data-toggle='modal' data-target='#ModalViewData' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
+                      "Cek Early Warning System" +
+                    "</button>" +
+                    // "<button class='delete' id='"+val.id+"' >" +
+                    //   "<i class='fa fa-trash-o'></i>" +
+                    // "</button>" +
+                  "</div>",
+              })
+              table_master.draw()
+              i++
+            })
+            }
+        }
+        })
+    }
+    function getTable2() {
         $.ajax({
         url : "{{url('get-early-warning-data')}}",
         method : 'GET',
@@ -259,26 +340,27 @@
         } else {
             $.each(data.responseJSON.data,(key,val)=>{
 
+              var kalibrasi = new Date(val.tanggal_kalibrasi);
               var warning_sys = new Date(val.tanggal_kalibrasi);
               warning_sys.setDate(warning_sys.getDate()+330);
 
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
-                table_master.row.add({
+                table_master2.row.add({
                 0:i, 
                 1:val.nama_alat, 
-                2:warning_sys, 
-                // 3:""+
-                // "<div class='col-action'>" +
-                //     "<button data-toggle='modal' data-target='#myModalMasterData' class='edit' id='"+val.id+"' >" +
-                //       "<i class='fa fa-edit'></i>" +
-                //     "</button>" +
-                //     "<button class='delete' id='"+val.id+"' >" +
-                //       "<i class='fa fa-trash-o'></i>" +
-                //     "</button>" +
-                //   "</div>",
+                2:kalibrasi, 
+                3:""+
+                "<div class='col-action'>" +
+                    "<button data-toggle='modal' data-target='#ModalViewData' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
+                      "Cek Early Warning System" +
+                    "</button>" +
+                    // "<button class='delete' id='"+val.id+"' >" +
+                    //   "<i class='fa fa-trash-o'></i>" +
+                    // "</button>" +
+                  "</div>",
               })
-              table_master.draw()
+              table_master2.draw()
               i++
             })
             }
@@ -286,16 +368,10 @@
         })
     }
 
-    function clear_table() {
-      $('#nama').val('')
-      $('#alamat').val('')
-      $('#no_telepon').val('')
-    }
-
     table_master.on('click', 'tbody tr td div button', function(){
     if ($(this).attr('class') === 'edit') {
       let id = $(this).attr('id');
-      console.log('click edit',id);
+      // console.log('click edit',id);
         
       var data = table_master.row($(this).parents('tr')).data()
       // console.log(data);
@@ -312,84 +388,14 @@
       $('.save_form').attr('action','edit')
       $('.save_form').attr('id',id)
     } else if ($(this).attr('class') === 'view') {
-        let id = $(this).attr('id');
-        // console.log('view', id);      
-          
+        let early_warning_sys = $(this).attr('data-tgl');
+        console.log('view tgl', early_warning_sys);      
         var data = table_master.row($(this).parents('tr')).data()
-        // console.log('view data ',data);
-        var nama = data[0]
-        alamat = data[1]
-        no_telepon = data[2]
+        var tgl = data[2]
 
-        $('.v_nama_alat_ukur').html(nama_alat_ukur)
-        $('.v_merk').html(merk)
-        $('.v_nomor_seri').html(nomor_seri)
-        $('.v_kapasitas').html(kapasitas)
-        $('.v_kelas').html(kelas)
-        $('.v_nomor_inventaris').html(nomor_inventaris)
-        $('.v_internal').html(internal)
-        $('.v_eksternal').html(eksternal)
-        $('.carousel-item.active').html(gambar)
-        
-        
-    } else if ($(this).attr('action') === 'edit') {
-      Swal.fire({
-        title: 'Yakin Mau Diedit?',
-        text: "",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Edit!'
-      }).then((result) => {
-        if (result.value) {
-          let id = $(this).attr('id')
-          let url = "{{url('master-data/update-data')}}"+'/'+id+"";
-          // console.log(url);
-          var data = {
-            id : id
-          }
-          $.ajax({
-            url : url,
-            method : 'POST',
-            data : data,
-            success: function(data) {                
-                getTable()
-            }
-          })
-        }
-      })    
-    } else {
-      Swal.fire({
-        title: 'Yakin Mau Dihapus?',
-        text: "Setelah dihapus, data produk ini akan hilang!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Apus!'
-      }).then((result) => {
-        if (result.value) {
-          let id = $(this).attr('id')
-          let url = "{{url('master-data/delete-data')}}"+'/'+id+"";
-          // console.log(url);
-          $.ajax({
-            url : url,
-            method : 'GET',
-            success: function(data) {                
-              if (data.message == 'success') {
-                Swal.fire(
-                  'Terhapus!',
-                  'Data Berhasil Terhapus.',
-                  'success'
-                )
-                var url =  "{{url('master-data')}}";
-                window.location.href = url;
-                }
-              }
-          })
-        }
-      })
+        $('.v_early_warning').html(early_warning_sys)
+
+        $('.v_tanggal').html(tgl)
     }
   })
 

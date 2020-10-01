@@ -12,6 +12,7 @@
 		}
 	</style>
 	<center>
+		{{-- <img src="{{asset('assets/images/West_java_coa.png')}}" alt="LOGO"> --}}
 		<h5>
 			Daftar Perusahaan Eksternal <br>
 		</h5>

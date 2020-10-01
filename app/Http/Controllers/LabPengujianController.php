@@ -125,7 +125,7 @@ class LabPengujianController extends Controller
                 'id_alat' => $id_alat,
                 'nama_alat' => $nama_alat_ukur,
             ];
-            DB::table('lab-cirebon.data_kalibrasis')->insert($data_kalibrasi);
+            DB::table('lab-cirebon.data_kalibrasi_pengujian')->insert($data_kalibrasi);
         }
 
         // $insert_data->save();

@@ -35,8 +35,6 @@ class MasterDataController extends Controller
     {
         $data = DB::table('lab-cirebon.data_kalibrasis')->get();
         return view('dashboard.early-warning.index', compact('data'));
-
-
     }
 
     /**
@@ -87,6 +85,21 @@ class MasterDataController extends Controller
     public function getEarlyWarning() {
         $out = [];
         $data = DB::table('lab-cirebon.data_kalibrasis')->get();
+        if (count($data) > 0) {
+            $out['state'] = true;
+            $out['message'] = 'success';
+            $out['data'] = $data;
+        } else {
+            $out['state'] = false;
+            $out['message'] = 'empty';
+            $out['data'] = null;
+        }
+        return $out;
+    }
+
+    public function getEarlyWarning2() {
+        $out = [];
+        $data = DB::table('lab-cirebon.data_kalibrasi_pengujian')->get();
         if (count($data) > 0) {
             $out['state'] = true;
             $out['message'] = 'success';

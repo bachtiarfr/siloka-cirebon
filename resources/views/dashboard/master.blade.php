@@ -281,28 +281,48 @@
 </body>
 <script>
 (function ($) {
-
-    $('#btn-export').on('click', function(){
-        Swal.fire({
-        title: 'Mau Export Data Laporan Dalam Bentuk Apa?',
-        // text: "Setelah dihapus, data produk ini akan hilang!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#28a745',
-        cancelButtonColor: '#d33',
-        cancelButtonText: "PDF",
-        allowOutsideClick: false,
-        confirmButtonText: 'Excel'
-      }).then((result) => {
-        if (result.value) {
-            var url =  "{{url('lab-pengujian/export_excel')}}";
-            window.location.href = url;
-        } else {
-            var url =  "{{url('lab-pengujian/export_pdf')}}";
-            window.location.href = url;
-        }
-      })   
-    })
+    
+    EarlyWarningSystem()
+    
+    function EarlyWarningSystem() {
+      var audioElement = document.createElement('audio');
+      audioElement.setAttribute('src', 'http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3');
+      
+      audioElement.addEventListener('ended', function() {
+          this.play();
+      }, false);
+      
+      audioElement.addEventListener("canplay",function(){
+          $("#length").text("Duration:" + audioElement.duration + " seconds");
+          $("#source").text("Source:" + audioElement.src);
+          $("#status").text("Status: Ready to play").css("color","green");
+      });
+      
+      audioElement.addEventListener("timeupdate",function(){
+          $("#currentTime").text("Current second:" + audioElement.currentTime);
+      });
+      
+      $('#play').click(function() {
+          audioElement.play();
+          Swal.fire({
+            title: 'STOP?',
+            text: "STOP ALARM!",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Stop Alarm!'
+          }).then((result) => {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          })
+        });
+      
+      $('#stop').click(function() {
+          audioElement.pause();
+          audioElement.currentTime = 0;
+          $("#status").text("Status: Paused");
+      });    
+    }
 
 })(jQuery);
 

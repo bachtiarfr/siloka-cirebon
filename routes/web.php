@@ -80,6 +80,7 @@ Route::get('/get-table-kalibrasi', 'LabKalibrasiController@getTable')->name('get
 Route::get('/get-data-eksternal', 'DataEksternalController@getTable')->name('get-table-data-eksternal');
 Route::get('/get-master-data', 'MasterDataController@getTable')->name('get-table-master-data');
 Route::get('/get-early-warning-data', 'MasterDataController@getEarlyWarning')->name('get-table-early-warning-data');
+Route::get('/get-early-warning-data2', 'MasterDataController@getEarlyWarning2')->name('get-table-early-warning-data');
 
 
 Route::get('/lab-kalibrasi', 'LabKalibrasiController@index')->name('lab-kalibrasi');

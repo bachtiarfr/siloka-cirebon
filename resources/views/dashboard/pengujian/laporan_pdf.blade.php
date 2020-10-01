@@ -12,6 +12,7 @@
 		}
 	</style>
 	<center>
+		{{-- <img src="{{asset('assets/images/West_java_coa.png')}}" alt="LOGO"> --}}
 		<h5>
 			Daftar Peralatan Standar Laboratorium Pengujian <br>
 			Balai Pengujian Dan Sertifikasi Mutu Barang <br>
