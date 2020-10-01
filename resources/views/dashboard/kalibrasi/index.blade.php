@@ -11,11 +11,14 @@
                 <a href="#" data-toggle="modal" data-target="#myModal">
                     <span class="badge badge-success mb-3">Masukan Data Baru</span>
                 </a>
+                <a href="{{url('lab-kalibrasi/export_pdf')}}">
+                  <span class="badge badge-danger mb-3">Export PDF</span>
+                </a>
                 <div class="form-group" id="gambar">
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Daftar Inventaris Alat Standar</strong>
+                        <strong class="card-title">Daftar Inventaris Alat Standar Laboratorium Kalibrasi</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -57,7 +60,7 @@
           <div class="col-lg-12">
               <div class="card">
                   <div class="card-body card-block">
-                    <form id="form_add_data" action="{{url('lab-pengujian/insert-data')}}" method="POST" enctype="multipart/form-data">
+                    <form id="form_add_data" action="{{url('lab-kalibrasi/insert-data')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <div class="form-group">
                           <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
@@ -298,7 +301,7 @@
     
     function getTable() {
         $.ajax({
-        url : "{{url('get-table-pengujian')}}",
+        url : "{{url('get-table-kalibrasi')}}",
         method : 'GET',
         complete : function(data){
         if (data.responseJSON.data === null || data.responseJSON.data === undefined) {
@@ -449,7 +452,7 @@
       }).then((result) => {
         if (result.value) {
           let id = $(this).attr('id')
-          let url = "{{url('lab-pengujian/delete-data')}}"+'/'+id+"";
+          let url = "{{url('lab-kalibrasi/delete-data')}}"+'/'+id+"";
           // console.log(url);
           $.ajax({
             url : url,
@@ -461,7 +464,7 @@
                   'Data Berhasil Terhapus.',
                   'success'
                 )
-                var url =  "{{url('data-eksternal')}}";
+                var url =  "{{url('/lab-kalibrasi')}}";
                 window.location.href = url;
                 }
               }

@@ -11,11 +11,15 @@
                 <a href="#" data-toggle="modal" data-target="#myModal">
                     <span class="badge badge-success mb-3">Masukan Data Baru</span>
                 </a>
+                <a href="{{url('lab-pengujian/export_pdf')}}">
+                  <span class="badge badge-danger mb-3">Export PDF</span>
+                </a>
+
                 <div class="form-group" id="gambar">
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Daftar Inventaris Alat Standar</strong>
+                      <strong class="card-title">Daftar Inventaris Alat Standar Laboratorium Pengujian</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

@@ -34,6 +34,22 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::group(['prefix' => 'lab-kalibrasi'], function () {
+        Route::get('/', 'LabKalibrasiController@index')->name('lab-kalibrasi');
+        Route::post('/insert-data', 'LabKalibrasiController@store')->name('lab-kalibrasi.insert-data');
+        Route::get('/delete-data/{id}', 'LabKalibrasiController@destroy')->name('lab-kalibrasi.delete-data');
+        Route::get('/edit-data/{id}', 'LabKalibrasiController@edit')->name('lab-kalibrasi.edit-data');
+        Route::post('/update-data/{id}', 'LabKalibrasiController@update')->name('lab-kalibrasi.update-data');
+        // EXPORT EXCEL
+        Route::get('/export_excel', 'LabKalibrasiController@export_excel')->name('export_excel');
+        // EXPORT PDF
+        Route::get('/export_pdf', 'LabKalibrasiController@export_pdf')->name('export_pdf');
+
+    });
+});
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'data-eksternal'], function () {
@@ -42,6 +58,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/delete-data/{id}', 'DataEksternalController@destroy')->name('eksternal.delete-data');
         Route::get('/edit-data/{id}', 'DataEksternalController@edit')->name('eksternal.edit-data');
         Route::post('/update-data/{id}', 'DataEksternalController@update')->name('eksternal.update-data');
+        Route::get('/export_pdf', 'DataEksternalController@export_pdf')->name('export_pdf');
+
     });
 });
 
@@ -58,6 +76,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 // API FOR DATATABLE
 Route::get('/get-table-pengujian', 'LabPengujianController@getTable')->name('get-table');
+Route::get('/get-table-kalibrasi', 'LabKalibrasiController@getTable')->name('get-table');
 Route::get('/get-data-eksternal', 'DataEksternalController@getTable')->name('get-table-data-eksternal');
 Route::get('/get-master-data', 'MasterDataController@getTable')->name('get-table-master-data');
 Route::get('/get-early-warning-data', 'MasterDataController@getEarlyWarning')->name('get-table-early-warning-data');

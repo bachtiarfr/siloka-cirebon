@@ -13,9 +13,7 @@
 	</style>
 	<center>
 		<h5>
-			Daftar Peralatan Standar Laboratorium Pengujian <br>
-			Balai Pengujian Dan Sertifikasi Mutu Barang <br>
-			Air Minum Dalam Kemasan Cirebon <br>
+			Daftar Perusahaan Eksternal <br>
 		</h5>
 		{{-- <h6><a target="_blank" href="https://www.malasngoding.com/membuat-laporan-…n-dompdf-laravel/">www.malasngoding.com</a></h5> --}}
 	</center>
@@ -25,13 +23,8 @@
 			<tr>
 				<th>No</th>
 				<th>Nama Alat</th>
-				<th>Merk</th>
-				<th>Nomor Seri</th>
-				<th>Kapasitas</th>
-				<th>Kelas</th>
-				<th>Jumlah</th>
-				<th>Internal</th>
-				<th>Eksternal</th>
+				<th>No Telepon</th>
+				<th>Alamat</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,14 +32,9 @@
 			@foreach($data as $p)
 			<tr>
 				<td>{{ $i++ }}</td>
-				<td>{{$p->nama_alat_ukur}}</td>
-				<td>{{$p->merk}}</td>
-				<td>{{$p->nomor_seri}}</td>
-				<td>{{$p->kapasitas}}</td>
-				<td>{{$p->kelas}}</td>
-				<td>{{$p->jumlah}}</td>
-				<td>{{$p->internal}}</td>
-				<td>{{$p->eksternal}}</td>
+				<td>{{$p->nama}}</td>
+				<td>{{$p->no_telepon}}</td>
+				<td>{{$p->alamat}}</td>
 			</tr>
 			@endforeach
 		</tbody>

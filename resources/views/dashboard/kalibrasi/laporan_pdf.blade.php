@@ -13,9 +13,9 @@
 	</style>
 	<center>
 		<h5>
-			Daftar Peralatan Standar Laboratorium Pengujian <br>
+			Daftar Peralatan Standar Laboratorium Kalibrasi <br>
 			Balai Pengujian Dan Sertifikasi Mutu Barang <br>
-			Air Minum Dalam Kemasan Cirebon <br>
+			Air Minum Dalam Kemasan Cirebon
 		</h5>
 		{{-- <h6><a target="_blank" href="https://www.malasngoding.com/membuat-laporan-…n-dompdf-laravel/">www.malasngoding.com</a></h5> --}}
 	</center>

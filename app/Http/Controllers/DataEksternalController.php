@@ -5,6 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DataEksternal;
 use DB;
+use App\AlatStandarKalibrasi;
+use App\MasterData;
+use App\DataKalibrasi;
+use Session;
+use File;
+
+use PDF;
+
+use App\Exports\DataLaporan;
 
 class DataEksternalController extends Controller
 {
@@ -28,6 +37,14 @@ class DataEksternalController extends Controller
         }
 
         return view('dashboard.eksternal.index');
+    }
+
+    public function export_pdf()
+    {
+        $data = DB::table('lab-cirebon.data_eksternal')->get();
+ 
+    	$pdf = PDF::loadview('dashboard.eksternal.laporan_pdf',['data'=>$data]);
+        return $pdf->stream();
     }
 
     /**

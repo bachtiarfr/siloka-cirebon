@@ -3,6 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\AlatStandarKalibrasi;
+use App\MasterData;
+use App\DataKalibrasi;
+use Session;
+use File;
+
+use PDF;
+
+use App\Exports\DataLaporan;
+
 
 class LabKalibrasiController extends Controller
 {
@@ -14,6 +25,21 @@ class LabKalibrasiController extends Controller
     public function index()
     {
         return view('dashboard.kalibrasi.index');
+    }
+
+    public function getTable() {
+        $out = [];
+        $data = DB::table('lab-cirebon.alat_standar_kalibrasi')->get();
+        if (count($data) > 0) {
+            $out['state'] = true;
+            $out['message'] = 'success';
+            $out['data'] = $data;
+        } else {
+            $out['state'] = false;
+            $out['message'] = 'empty';
+            $out['data'] = null;
+        }
+        return $out;
     }
 
     /**
@@ -34,7 +60,82 @@ class LabKalibrasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // dd($request->all());
+         $images = array();
+
+         $this->validate($request, [
+             'filename' => 'required',
+             'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048'
+         ]);        
+ 
+         $nama_alat_ukur = $request->input('nama_alat_ukur');
+         $merk = $request->input('merk');
+         $id_alat = $request->input('id_alat');
+         $nomor_seri = $request->input('nomor_seri');
+         $kapasitas = $request->input('kapasitas');
+         $kelas = $request->input('kelas');
+         $nomor_inventaris = $request->input('nomor_inventaris');
+         $jumlah = $request->input('jumlah');
+         $internal = $request->input('internal');
+         $eksternal = $request->input('eksternal');
+ 
+         $insert_data = new AlatStandarKalibrasi;
+ 
+         $imageName = time().'.'.request()->filename->getClientOriginalExtension();
+         // dd($imageName);
+         request()->filename->move(public_path('assets/images'), $imageName);
+         $insert_data->gambar = $imageName;
+ 
+         $data_alat_standar = [
+             'nama_alat_ukur' => $nama_alat_ukur, 
+             'merk' => $merk, 
+             'id_alat' => $id_alat, 
+             'nomor_seri' => $nomor_seri, 
+             'gambar' => $imageName, 
+             'kapasitas' => $kapasitas, 
+             'kelas' => $kelas, 
+             'nomor_inventaris' => $nomor_inventaris, 
+             'jumlah' => $jumlah, 
+             'internal' => $internal, 
+             'eksternal' => $eksternal, 
+         ];
+ 
+         $data_kalibrasi = [
+             'id_alat' => $id_alat,
+             'nama_alat' => $nama_alat_ukur,
+         ];
+ 
+         $insert_alat_standar = DB::table('lab-cirebon.alat_standar_kalibrasi')->insert($data_alat_standar);
+         if ($insert_alat_standar) {
+ 
+             $data_kalibrasi = [
+                 'id_alat' => $id_alat,
+                 'nama_alat' => $nama_alat_ukur,
+             ];
+             DB::table('lab-cirebon.data_kalibrasis')->insert($data_kalibrasi);
+         }
+ 
+         // $insert_data->save();
+         if ($insert_data) {
+             // $data_kalibrasi = new DataKalibrasi;
+             // $data_kalibrasi->id_alat = $insert_data->id;
+             // $data_kalibrasi->nama_alat_ukur->insert_data->nama_alat_ukur;
+             // $data_kalibrasi->tanggal_kalibrasi = $insert_data->created_at;
+             // $data_kalibrasi->save();
+             // Session::flash("success", "berhasil Menambah Product");
+             return redirect()->to("/lab-kalibrasi");
+         } else {
+             // Session::flash("error", "Gagal Menambah Product");
+             return redirect()->to("/lab-kalibrasi");
+         }    
+    }
+
+    public function export_pdf()
+    {
+        $data = DB::table('lab-cirebon.alat_standar_kalibrasi')->get();
+ 
+    	$pdf = PDF::loadview('dashboard.kalibrasi.laporan_pdf',['data'=>$data]);
+        return $pdf->stream();
     }
 
     /**
@@ -79,6 +180,17 @@ class LabKalibrasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $get_alat = AlatStandarKalibrasi::find($id);
+        // dd($get_alat);
+        $get_alat->delete();
+        if ($get_alat) {
+            return response()->json([
+                'message' => 'success'
+            ]);
+        } else {
+            return response($e)->json([
+                'message' => $e
+            ]);
+        }
     }
 }

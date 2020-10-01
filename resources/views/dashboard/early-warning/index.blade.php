@@ -10,7 +10,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Daftar Alat</strong>
+                        <strong class="card-title">Data Jadwal Kalibrasi Peralatan</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

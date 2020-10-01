@@ -20,6 +20,7 @@
                             <table class="table table-striped table-bordered table_master">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama </th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -263,11 +264,12 @@
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
                 table_master.row.add({
-                0:val.nama,
-                1:(val.status_kalibrasi === 'belum dikalibrasi') ? ""+
+                0:i,
+                1:val.nama,
+                2:(val.status_kalibrasi === 'belum dikalibrasi') ? ""+
                 "<span class='badge badge-danger'>"+val.status_kalibrasi+"</span>"+
                 "":"<span class='badge badge-success'>"+val.status_kalibrasi+"</span>",
-                2:""+
+                3:""+
                 "<div class='col-action'>" +
                     "<button data-toggle='modal' data-target='#myModalMasterData' class='edit' id='"+val.id+"' >" +
                       "<i class='fa fa-edit'></i>" +
@@ -276,10 +278,9 @@
                       "<i class='fa fa-trash-o'></i>" +
                     "</button>" +
                   "</div>",
-                10:""+
-                "<img src='"+url+"' class='myImg'>",
               })
               table_master.draw()
+              i++;
             })
             }
         }

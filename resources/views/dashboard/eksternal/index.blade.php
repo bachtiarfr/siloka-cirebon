@@ -11,6 +11,9 @@
                 <a href="#" data-toggle="modal" data-target="#myModalEksternal">
                     <span class="badge badge-success mb-3">Masukan Data Baru</span>
                 </a>
+                <a href="{{url('data-eksternal/export_pdf')}}">
+                  <span class="badge badge-danger mb-3">Export PDF</span>
+                </a>
                 <div class="form-group" id="gambar">
                 </div>
                 <div class="card">
@@ -22,6 +25,7 @@
                             <table class="table table-striped table-bordered table_data_eksternal">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama </th>
                                         <th>Alamat</th>
                                         <th>No Telepon</th>
@@ -276,10 +280,11 @@
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
                 table_data_eksternal.row.add({
-                0:val.nama,
-                1:val.alamat,
-                2:val.no_telepon,
-                3:""+
+                0:i,
+                1:val.nama,
+                2:val.alamat,
+                3:val.no_telepon,
+                4:""+
                 "<div class='col-action'>" +
                     "<button data-toggle='modal' data-target='#myModalEksternal' class='edit' id='"+val.id+"' >" +
                       "<i class='fa fa-edit'></i>" +
@@ -288,10 +293,9 @@
                       "<i class='fa fa-trash-o'></i>" +
                     "</button>" +
                   "</div>",
-                10:""+
-                "<img src='"+url+"' class='myImg'>",
               })
               table_data_eksternal.draw()
+              i++;
             })
             }
         }

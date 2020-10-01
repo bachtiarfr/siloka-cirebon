@@ -158,7 +158,7 @@
             <div class="animated fadeIn">
                 <!-- Widgets  -->
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <a href="{{url('/lab-pengujian')}}">
                             <div class="card">
                                 <div class="card-body lab-menu">
@@ -180,7 +180,7 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <a href="{{url('/lab-kalibrasi')}}">
                             <div class="card">
                                 <div class="card-body lab-menu">
@@ -200,7 +200,7 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <a href="{{url('/early-warning-system')}}">
                             <div class="card">
                                 <div class="card-body lab-menu">
@@ -212,26 +212,6 @@
                                             <div class="text-left dib">
                                                 <div class="stat-text">Early Warning</div>
                                                 <div class="stat-heading">Systems</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6" id="btn-export">
-                        <a href="#">
-                            <div class="card">
-                                <div class="card-body lab-menu">
-                                    <div class="stat-widget-five">
-                                        <div class="stat-icon dib flat-color-3">
-                                            <img src="{{asset('assets/images/report.svg')}}" alt="" style="height: 70px">
-                                        </div>
-                                        <div class="stat-content">
-                                            <div class="text-left dib">
-                                                <div class="stat-text">Laporan</div>
-                                                <div class="stat-heading">Data Peralatan</div>
                                             </div>
                                         </div>
                                     </div>
