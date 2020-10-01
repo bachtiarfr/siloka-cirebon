@@ -1,4 +1,3 @@
-Hi Salma!
 
 Ikutin langkah ini ya :
 1. install composer
