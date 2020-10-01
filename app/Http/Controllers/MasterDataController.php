@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use DB;
 use App\MasterData;
 
+use App\AlatStandarKalibrasi;
+use App\DataKalibrasi;
+use Session;
+use File;
+
+use PDF;
+
 class MasterDataController extends Controller
 {
     /**
@@ -155,6 +162,21 @@ class MasterDataController extends Controller
             $err['detail'] = '';
             return $err;
         }
+    }
+
+    public function kalibrasi_pengujian_export_pdf ()
+    {
+        $data = DB::table('lab-cirebon.data_kalibrasi_pengujian')->get();
+ 
+    	$pdf = PDF::loadview('dashboard.early-warning.laporan_early_warning_kalibrasi_pengujian',['data'=>$data]);
+        return $pdf->stream();    }
+
+    public function kalibrasi_export_pdf()
+    {
+        $data = DB::table('lab-cirebon.data_kalibrasis')->get();
+ 
+    	$pdf = PDF::loadview('dashboard.early-warning.laporan_early_warning_kalibrasi',['data'=>$data]);
+        return $pdf->stream();   
     }
 
     /**

@@ -24,7 +24,7 @@
                       <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                           <div class="table-responsive">
-                            <a href="{{url('data-pengujian/export_pdf')}}">
+                            <a href="{{url('data-kalibrasi-pengujian/export_pdf')}}">
                               <span class="badge badge-danger mb-3">Export PDF</span>
                             </a>
                               <table class="table table-striped table-bordered table_master">
@@ -294,6 +294,7 @@
     getTable2();
     
     function getTable() {
+      var i = 1;
         $.ajax({
         url : "{{url('get-early-warning-data2')}}",
         method : 'GET',

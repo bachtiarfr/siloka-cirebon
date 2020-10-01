@@ -82,6 +82,10 @@ Route::get('/get-master-data', 'MasterDataController@getTable')->name('get-table
 Route::get('/get-early-warning-data', 'MasterDataController@getEarlyWarning')->name('get-table-early-warning-data');
 Route::get('/get-early-warning-data2', 'MasterDataController@getEarlyWarning2')->name('get-table-early-warning-data');
 
+// EXPORT PDF IN EARLY WARNING SYSTEM
+Route::get('/data-kalibrasi-pengujian/export_pdf', 'MasterDataController@kalibrasi_pengujian_export_pdf')->name('export_pdf');
+Route::get('/data-kalibrasi/export_pdf', 'MasterDataController@kalibrasi_export_pdf')->name('export_pdf');
+
 
 Route::get('/lab-kalibrasi', 'LabKalibrasiController@index')->name('lab-kalibrasi');
 Route::get('/lap-data-peralatan', 'DataPeralatanController@index')->name('data-peralatan');
