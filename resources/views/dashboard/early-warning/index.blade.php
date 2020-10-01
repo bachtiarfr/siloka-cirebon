@@ -117,7 +117,7 @@
           <div class="container text-left">
             <div class="row">
               <div class="col-md-12">
-                <h3 class="font-weight-normal mb-3">Tanggal Kalibrasi Ulang :</h3>
+                <h3 class="font-weight-normal mb-3">Tanggal Kalibrasi Awal :</h3>
                 <h4 class="h4 v_tanggal"></h4>
               </div>
               <!-- Grid column -->
