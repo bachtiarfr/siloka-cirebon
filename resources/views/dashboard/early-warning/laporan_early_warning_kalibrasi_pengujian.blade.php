@@ -13,7 +13,7 @@
 	</style>
 	<center>
 		<h5>
-			Data Early Warning System Laboratorium Pengujian<br>
+			DATA EARLY WARNING SYSTEM LABORATORIUM PENGUJIAN <br>
 		</h5>
 	</center>
  

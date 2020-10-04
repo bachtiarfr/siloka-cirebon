@@ -14,7 +14,7 @@
 	<center>
 		{{-- <img src="{{asset('assets/images/West_java_coa.png')}}" alt="LOGO"> --}}
 		<h5>
-			Data Early Warning System Laboratorium Kalibrasi<br>
+			DATA EARLY WARNING SYSTEM LABORATORIUM KALIBRASI <br>
 		</h5>
 		{{-- <h6><a target="_blank" href="https://www.malasngoding.com/membuat-laporan-…n-dompdf-laravel/">www.malasngoding.com</a></h5> --}}
 	</center>

@@ -25,6 +25,7 @@
                             <table class="table table-striped table-bordered table_pengujian">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama Alat Ukur</th>
                                         <th>Merk/Tipe</th>
                                         <th>Nomor Seri</th>
@@ -311,16 +312,17 @@
               var gambar = val.gambar
               let url = "{{asset('assets/images')}}"+'/'+gambar+"";
                 table_pengujian.row.add({
-                0:val.nama_alat_ukur,
-                1:val.merk,
-                2:val.nomor_seri,
-                3:val.kapasitas,
-                4:val.kelas,
-                5:val.nomor_inventaris,
-                6:val.jumlah,
-                7:val.internal,
-                8:val.eksternal,
-                9:""+
+                0:i,
+                1:val.nama_alat_ukur,
+                2:val.merk,
+                3:val.nomor_seri,
+                4:val.kapasitas,
+                5:val.kelas,
+                6:val.nomor_inventaris,
+                7:val.jumlah,
+                8:val.internal,
+                9:val.eksternal,
+                10:""+
                 "<div class='col-action'>" +
                     "<button data-toggle='modal' data-target='#myModal' class='edit' id='"+val.id+"' >" +
                       "<i class='fa fa-edit'></i>" +
@@ -332,10 +334,11 @@
                       "<i class='fa fa-trash-o'></i>" +
                     "</button>" +
                   "</div>",
-                10:""+
+                11:""+
                 "<img src='"+url+"' class='myImg'>",
               })
               table_pengujian.draw()
+              i++
             })
             }
         }
@@ -361,15 +364,15 @@
         
       var data = table_pengujian.row($(this).parents('tr')).data()
       // console.log(data);
-      var nama_alat_ukur = data[0]
-      merk = data[1]
-      nomor_seri = data[2]
-      kapasitas = data[3]
-      kelas = data[4]
-      nomor_inventaris = data[5]
-      jumlah = data[6]
-      internal = data[7]
-      eksternal = data[8]
+      var nama_alat_ukur = data[1]
+      merk = data[2]
+      nomor_seri = data[3]
+      kapasitas = data[4]
+      kelas = data[5]
+      nomor_inventaris = data[6]
+      jumlah = data[7]
+      internal = data[8]
+      eksternal = data[9]
       
       var indexRow = table_pengujian.row($(this).parents('tr')).index()
       
@@ -391,16 +394,16 @@
           
         var data = table_pengujian.row($(this).parents('tr')).data()
         console.log('view data ',data);
-        var nama_alat_ukur = data[0]
-        merk = data[1]
-        nomor_seri = data[2]
-        kapasitas = data[3]
-        kelas = data[4]
-        nomor_inventaris = data[5]
-        jumlah = data[6]
-        internal = data[7]
-        eksternal = data[8]
-        gambar = data[10]
+        var nama_alat_ukur = data[1]
+        merk = data[2]
+        nomor_seri = data[3]
+        kapasitas = data[4]
+        kelas = data[5]
+        nomor_inventaris = data[6]
+        jumlah = data[7]
+        internal = data[8]
+        eksternal = data[9]
+        gambar = data[11]
 
         $('.v_nama_alat_ukur').html(nama_alat_ukur)
         $('.v_merk').html(merk)

@@ -44,7 +44,9 @@ class DataEksternalController extends Controller
         $data = DB::table('lab-cirebon.data_eksternal')->get();
  
     	$pdf = PDF::loadview('dashboard.eksternal.laporan_pdf',['data'=>$data]);
+        $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
+
     }
 
     /**

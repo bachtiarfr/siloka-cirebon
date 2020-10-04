@@ -169,14 +169,19 @@ class MasterDataController extends Controller
         $data = DB::table('lab-cirebon.data_kalibrasi_pengujian')->get();
  
     	$pdf = PDF::loadview('dashboard.early-warning.laporan_early_warning_kalibrasi_pengujian',['data'=>$data]);
-        return $pdf->stream();    }
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    
+    }
 
     public function kalibrasi_export_pdf()
     {
         $data = DB::table('lab-cirebon.data_kalibrasis')->get();
  
     	$pdf = PDF::loadview('dashboard.early-warning.laporan_early_warning_kalibrasi',['data'=>$data]);
-        return $pdf->stream();   
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+   
     }
 
     /**

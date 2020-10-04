@@ -14,9 +14,9 @@
 	<center>
 		{{-- <img src="{{asset('assets/images/West_java_coa.png')}}" alt="LOGO"> --}}
 		<h5>
-			Daftar Peralatan Standar Laboratorium Kalibrasi <br>
-			Balai Pengujian Dan Sertifikasi Mutu Barang <br>
-			Air Minum Dalam Kemasan Cirebon
+			DAFTAR PERALATAN STANDAR LABORATORIUM KALIBRASI <br>
+			BALAI PENGUJIAN DAN SERTIFIKASI MUTU BARANG <br>
+			AIR MINUM DALAM KEMASAN CIREBON
 		</h5>
 		{{-- <h6><a target="_blank" href="https://www.malasngoding.com/membuat-laporan-…n-dompdf-laravel/">www.malasngoding.com</a></h5> --}}
 	</center>

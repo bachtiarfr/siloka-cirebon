@@ -153,7 +153,9 @@ class LabPengujianController extends Controller
         $data = DB::table('lab-cirebon.alat_standar')->get();
  
     	$pdf = PDF::loadview('dashboard.pengujian.laporan_pdf',['data'=>$data]);
+        $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
+
     }
 
     /**

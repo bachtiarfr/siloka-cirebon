@@ -134,7 +134,8 @@ class LabKalibrasiController extends Controller
     {
         $data = DB::table('lab-cirebon.alat_standar_kalibrasi')->get();
  
-    	$pdf = PDF::loadview('dashboard.kalibrasi.laporan_pdf',['data'=>$data]);
+        $pdf = PDF::loadview('dashboard.kalibrasi.laporan_pdf',['data'=>$data]);
+        $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
 
