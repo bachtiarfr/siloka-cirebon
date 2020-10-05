@@ -100,8 +100,50 @@
 
 {{-- MODAL VIEW DATA PENGUJIAN --}}
 
-<!-- Modal detail data -->
-<div class="modal fade" id="ModalViewData" tabindex="-1" role="dialog" aria-labelledby="ModalViewDataLabel" aria-hidden="true">
+<!-- Modal data pengujian -->
+<div class="modal fade" id="ModalViewDataPengujian" tabindex="-1" role="dialog" aria-labelledby="ModalViewDataPengujianLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0px">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- News jumbotron -->
+        <div class="jumbotron text-center hoverable p-4">
+
+          <!-- Grid row -->
+          <div class="container text-left">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="font-weight-normal mb-3">Tanggal Kalibrasi Awal :</h3>
+                <h4 class="h4 v_tanggal"></h4>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="font-weight-normal mb-3">Watu Early Warning System :</h3>
+                <h4 class="h4 v_early_warning"></h4>
+              </div>
+              <!-- Grid column -->
+            </div>
+          </div>
+          <!-- Grid row -->
+          
+        </div>
+        <button class="col-md-12 btn-warning" id="play">
+          Nyalakan Alarm Sekarang
+        </button>
+        <!-- News jumbotron -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal data kalibrasi -->
+<div class="modal fade" id="ModalViewDataKalibrasi" tabindex="-1" role="dialog" aria-labelledby="ModalViewDataKalibrasiLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" style="border-bottom: 0px">
@@ -316,7 +358,7 @@
                 2:kalibrasi, 
                 3:""+
                 "<div class='col-action'>" +
-                    "<button data-toggle='modal' data-target='#ModalViewData' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
+                    "<button data-toggle='modal' data-target='#ModalViewDataKalibrasi' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
                       "Cek Early Warning System" +
                     "</button>" +
                     // "<button class='delete' id='"+val.id+"' >" +
@@ -353,7 +395,7 @@
                 2:kalibrasi, 
                 3:""+
                 "<div class='col-action'>" +
-                    "<button data-toggle='modal' data-target='#ModalViewData' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
+                    "<button data-toggle='modal' data-target='#ModalViewDataPengujian' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
                       "Cek Early Warning System" +
                     "</button>" +
                     // "<button class='delete' id='"+val.id+"' >" +

@@ -64,8 +64,15 @@
                     <form id="form_add_data" action="{{url('lab-kalibrasi/insert-data')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <div class="form-group">
-                          <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
-                          <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required>
+                        <label for="nama_alat_ukur" class=" form-control-label">Nama Alat Ukur</label>
+                        <select class="form-control select2" id="nama_alat_ukur" name="nama_alat_ukur">
+                          <option value="" selected>Pilih Salah Satu Data</option>
+                          @foreach ($alat as $item)
+                          <option value="{{$item->nama}}" data-id="{{$item->id}}">{{$item->nama}}</option>
+                          @endforeach  
+                          </select>
+                          <input type="text" id="id_alat" name="id_alat" class="form-control">
+                          {{-- <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required> --}}
                       </div>
                       <div class="form-group">
                           <label for="gambar" class=" form-control-label">Masukan Gambar</label>
@@ -104,8 +111,10 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label for="internal" class=" form-control-label">Internal</label>
-                          <input type="text" id="internal" name="internal" placeholder="Internal" class="form-control" required>
+                        <label for="Tanggal Kalibrasi" class=" form-control-label">Tanggal Kalibrasi</label>
+                        <input type="date" name="tanggal_kalibrasi" id="tanggal_kalibrasi">
+                        <input type="text" id="perusahaan" name="perusahaan" placeholder="" class="form-control" required>
+
                       </div>
                       <div class="form-group">
                           <label for="eksternal" class=" form-control-label">Eksternal</label>
@@ -228,6 +237,15 @@
 <script type="text/javascript">    
 (function ($) {
 
+  
+  $('select').on('change',function(){
+    var id_alat = $(this).find(':selected').data('id');
+    $('#id_alat').val(id_alat);
+    console.log(id_alat);
+
+  })
+  
+
   // image view
   var modal = document.getElementById("ImageModal");
   // Get the image and insert it inside the modal - use its "alt" text as a caption
@@ -320,7 +338,7 @@
                 5:val.kelas,
                 6:val.nomor_inventaris,
                 7:val.jumlah,
-                8:val.internal,
+                8:val.tanggal_kalibrasi + " " + val.perusahaan,
                 9:val.eksternal,
                 10:""+
                 "<div class='col-action'>" +

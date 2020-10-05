@@ -34,7 +34,7 @@
                                         <th>kelas</th>
                                         <th>Nomor Inventaris</th>
                                         <th>Jumlah</th>
-                                        <th>Internal</th>
+                                        <th>Tanggal Kalibrasi</th>
                                         <th>Eksternal</th>
                                         <th>Action</th>
                                     </tr>
@@ -85,7 +85,7 @@
                       </div>
                       <div class="form-group">
                           <label for="nomor_seri" class=" form-control-label">Nomor Seri</label>
-                          <input type="number" id="nomor_seri" name="nomor_seri" placeholder="Masukan nomor seri" class="form-control" required>
+                          <input type="text" id="nomor_seri" name="nomor_seri" placeholder="Masukan nomor seri" class="form-control" required>
                       </div>
                       <div class="form-group">
                           <div class="row">
@@ -112,8 +112,9 @@
                           </div>
                       </div>
                       <div class="form-group">
-                        <label for="internal" class=" form-control-label">Internal</label>
-                        <input type="text" id="internal" name="internal" placeholder="Internal" class="form-control" required>
+                        <label for="Tanggal Kalibrasi" class=" form-control-label">Tanggal Kalibrasi</label>
+                        <input type="date" name="tanggal_kalibrasi" id="tanggal_kalibrasi">
+                        <input type="text" id="perusahaan" name="perusahaan" placeholder="" class="form-control" required>
 
                       </div>
                       <div class="form-group">
@@ -341,7 +342,7 @@
                 5:val.kelas,
                 6:val.nomor_inventaris,
                 7:val.jumlah,
-                8:val.internal,
+                8:val.tanggal_kalibrasi + " " + val.perusahaan,
                 9:val.eksternal,
                 10:""+
                 "<div class='col-action'>" +
@@ -505,7 +506,7 @@
                   'Data Berhasil Terhapus.',
                   'success'
                 )
-                var url =  "{{url('data-eksternal')}}";
+                var url =  "{{url('lab-pengujian')}}";
                 window.location.href = url;
                 }
               }

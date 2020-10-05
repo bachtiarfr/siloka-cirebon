@@ -11,6 +11,7 @@ use Session;
 use File;
 
 use PDF;
+use Carbon\Carbon;
 
 use App\Exports\DataLaporan;
 use Maatwebsite\Excel\Facades\Excel;
@@ -75,6 +76,10 @@ class LabPengujianController extends Controller
     {
         // dd($request->all());
         $images = array();
+        $tanggal_kalibrasi = Carbon::parse($request->input('tanggal_kalibasi'))->format('d-m-Y');
+        // $tgl = $tanggal_kalibrasi->format('d-m-Y');
+        // dd($tanggal_kalibrasi);
+        
 
         $this->validate($request, [
             'filename' => 'required',
@@ -89,7 +94,8 @@ class LabPengujianController extends Controller
         $kelas = $request->input('kelas');
         $nomor_inventaris = $request->input('nomor_inventaris');
         $jumlah = $request->input('jumlah');
-        $internal = $request->input('internal');
+        $tanggal_kalibrasi = $request->input('tanggal_kalibrasi');
+        $perusahaan = $request->input('perusahaan');
         $eksternal = $request->input('eksternal');
 
         $insert_data = new AlatStandar;
@@ -109,13 +115,15 @@ class LabPengujianController extends Controller
             'kelas' => $kelas, 
             'nomor_inventaris' => $nomor_inventaris, 
             'jumlah' => $jumlah, 
-            'internal' => $internal, 
+            'tanggal_kalibrasi' => $tanggal_kalibrasi, 
+            'perusahaan' => $perusahaan, 
             'eksternal' => $eksternal, 
         ];
 
         $data_kalibrasi = [
             'id_alat' => $id_alat,
             'nama_alat' => $nama_alat_ukur,
+            'tanggal_kalibrasi' => $tanggal_kalibrasi,
         ];
 
         $insert_alat_standar = DB::table('lab-cirebon.alat_standar')->insert($data_alat_standar);
@@ -124,6 +132,7 @@ class LabPengujianController extends Controller
             $data_kalibrasi = [
                 'id_alat' => $id_alat,
                 'nama_alat' => $nama_alat_ukur,
+                'tanggal_kalibrasi' => $request->input('tanggal_kalibrasi'),
             ];
             DB::table('lab-cirebon.data_kalibrasi_pengujian')->insert($data_kalibrasi);
         }
@@ -204,6 +213,10 @@ class LabPengujianController extends Controller
         // dd($gambar);
         $get_alat->delete();
         if ($get_alat) {
+            DB::table('lab-cirebon.data_kalibrasi_pengujian')
+                ->where('id_alat', $get_alat->id)
+                ->delete();
+
             return response()->json([
                 'message' => 'success'
             ]);

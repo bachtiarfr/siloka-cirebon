@@ -24,7 +24,20 @@ class LabKalibrasiController extends Controller
      */
     public function index()
     {
-        return view('dashboard.kalibrasi.index');
+        $alat = MasterData::all();
+        $out = [];
+        $data = DB::table('lab-cirebon.alat_standar')->get();
+        if (count($data) > 0) {
+            $out['state'] = true;
+            $out['message'] = 'success';
+            $out['data'] = $data;
+        } else {
+            $out['state'] = false;
+            $out['message'] = 'empty';
+            $out['data'] = null;
+        }
+
+        return view('dashboard.kalibrasi.index', compact('alat'));
     }
 
     public function getTable() {
@@ -76,7 +89,8 @@ class LabKalibrasiController extends Controller
          $kelas = $request->input('kelas');
          $nomor_inventaris = $request->input('nomor_inventaris');
          $jumlah = $request->input('jumlah');
-         $internal = $request->input('internal');
+         $tanggal_kalibrasi = $request->input('tanggal_kalibrasi');
+         $perusahaan = $request->input('perusahaan');
          $eksternal = $request->input('eksternal');
  
          $insert_data = new AlatStandarKalibrasi;
@@ -96,7 +110,8 @@ class LabKalibrasiController extends Controller
              'kelas' => $kelas, 
              'nomor_inventaris' => $nomor_inventaris, 
              'jumlah' => $jumlah, 
-             'internal' => $internal, 
+             'tanggal_kalibrasi' => $tanggal_kalibrasi, 
+             'perusahaan' => $perusahaan, 
              'eksternal' => $eksternal, 
          ];
  
@@ -111,6 +126,7 @@ class LabKalibrasiController extends Controller
              $data_kalibrasi = [
                  'id_alat' => $id_alat,
                  'nama_alat' => $nama_alat_ukur,
+                 'tanggal_kalibrasi' => $tanggal_kalibrasi,
              ];
              DB::table('lab-cirebon.data_kalibrasis')->insert($data_kalibrasi);
          }
@@ -182,9 +198,14 @@ class LabKalibrasiController extends Controller
     public function destroy($id)
     {
         $get_alat = AlatStandarKalibrasi::find($id);
-        // dd($get_alat);
+        // dd($get_alat->id);
         $get_alat->delete();
         if ($get_alat) {
+
+            DB::table('lab-cirebon.data_kalibrasis')
+                ->where('id_alat', $get_alat->id)
+                ->delete();
+
             return response()->json([
                 'message' => 'success'
             ]);

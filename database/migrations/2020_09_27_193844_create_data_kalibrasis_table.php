@@ -17,7 +17,7 @@ class CreateDataKalibrasisTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_alat')->nullable()->default(12);
             $table->string('nama_alat', 100)->nullable()->default('text');
-            $table->timestamp('tanggal_kalibrasi')->useCurrent();
+            $table->timestamp('tanggal_kalibrasi');
             $table->timestamps();
         });
     }

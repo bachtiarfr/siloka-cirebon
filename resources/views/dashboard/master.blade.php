@@ -245,10 +245,12 @@
 </body>
 <script>
 (function ($) {
+    // console.log(audio_url);  
     
     EarlyWarningSystem()
     
     function EarlyWarningSystem() {
+      var audio_url = "{{asset('assets/audio/alarm.mpeg')}}";
       var audioElement = document.createElement('audio');
       audioElement.setAttribute('src', 'http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3');
       
@@ -267,6 +269,7 @@
       });
       
       $('#play').click(function() {
+          console.log('clicked');
           audioElement.play();
           Swal.fire({
             title: 'STOP?',
