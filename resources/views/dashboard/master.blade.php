@@ -39,17 +39,17 @@
 
 <body>
     <!-- Left Panel -->
-    <aside id="left-panel" class="left-panel">
+    <aside id="left-panel" class="left-panel" style="background:rgb(79, 182, 241 , 0.4)">
         <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <div id="main-menu" class="main-menu collapse navbar-collapse" style="background:rgb(79, 182, 241 , 0.4)">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li>
                         <a href="#"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{{('/master-data')}}"> <i class="menu-icon fa fa-tasks"></i>Master Data</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{{url('/data-eksternal')}}"> <i class="menu-icon fa fa-building-o"></i>Perusahaan Eksternal</a>
                     </li>
                 </ul>
@@ -124,7 +124,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <a href="{{url('/lab-pengujian')}}">
-                            <div class="card">
+                            <div class="card" style="background: rgb(79, 182, 241 , 0.4);">
                                 <div class="card-body lab-menu">
                                     <div class="stat-widget-five">
                                         <div class="stat-icon dib flat-color-1">
@@ -134,7 +134,7 @@
                                         <div class="stat-content">
                                             <div class="text-left dib">
                                                 <div class="stat-text">Laboratorium</div>
-                                                <div class="stat-heading">Pengujian</div>
+                                                <div class="stat-text">Pengujian</div>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
 
                     <div class="col-lg-4 col-md-6">
                         <a href="{{url('/lab-kalibrasi')}}">
-                            <div class="card">
+                            <div class="card" style="background:rgb(111, 207, 151, 0.4)">
                                 <div class="card-body lab-menu">
                                     <div class="stat-widget-five">
                                         <div class="stat-icon dib flat-color-2">
@@ -155,7 +155,7 @@
                                         <div class="stat-content">
                                             <div class="text-left dib">
                                                 <div class="stat-text">Laboratorium</div>
-                                                <div class="stat-heading">Kalibrasi</div>
+                                                <div class="stat-text">Kalibrasi</div>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@
 
                     <div class="col-lg-4 col-md-6">
                         <a href="{{url('/early-warning-system')}}">
-                            <div class="card">
+                            <div class="card" style="background:rgb(242, 153, 74, 0.4)">
                                 <div class="card-body lab-menu">
                                     <div class="stat-widget-five">
                                         <div class="stat-icon dib flat-color-4">
@@ -175,7 +175,7 @@
                                         <div class="stat-content">
                                             <div class="text-left dib">
                                                 <div class="stat-text">Early Warning</div>
-                                                <div class="stat-heading">Systems</div>
+                                                <div class="stat-text">Systems</div>
                                             </div>
                                         </div>
                                     </div>
