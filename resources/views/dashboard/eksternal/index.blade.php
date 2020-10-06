@@ -315,9 +315,9 @@
         
       var data = table_data_eksternal.row($(this).parents('tr')).data()
       // console.log(data);
-      var nama = data[0]
-      alamat = data[1]
-      no_telepon = data[2]
+      var nama = data[1]
+      alamat = data[2]
+      no_telepon = data[3]
       
       var indexRow = table_data_eksternal.row($(this).parents('tr')).index()
       
@@ -333,9 +333,9 @@
           
         var data = table_data_eksternal.row($(this).parents('tr')).data()
         // console.log('view data ',data);
-        var nama = data[0]
-        alamat = data[1]
-        no_telepon = data[2]
+        var nama = data[1]
+        alamat = data[2]
+        no_telepon = data[3]
 
         $('.v_nama_alat_ukur').html(nama_alat_ukur)
         $('.v_merk').html(merk)

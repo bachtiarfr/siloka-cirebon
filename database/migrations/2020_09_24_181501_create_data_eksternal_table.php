@@ -16,7 +16,7 @@ class CreateDataEksternalTable extends Migration
         Schema::create('data_eksternal', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->bigInteger('no_telepon');
+            $table->string('no_telepon');
             $table->string('alamat');
             $table->timestamps();
         });

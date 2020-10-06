@@ -31,7 +31,7 @@
 				<th>Kapasitas</th>
 				<th>Kelas</th>
 				<th>Jumlah</th>
-				<th>Internal</th>
+				<th>Tanggal Kalibrasi</th>
 				<th>Eksternal</th>
 			</tr>
 		</thead>
@@ -46,7 +46,7 @@
 				<td>{{$p->kapasitas}}</td>
 				<td>{{$p->kelas}}</td>
 				<td>{{$p->jumlah}}</td>
-				<td>{{$p->internal}}</td>
+				<td>{{$p->tanggal_kalibrasi . " " . $p->perusahaan}}</td>
 				<td>{{$p->eksternal}}</td>
 			</tr>
 			@endforeach

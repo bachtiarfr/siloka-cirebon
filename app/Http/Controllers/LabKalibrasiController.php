@@ -186,7 +186,45 @@ class LabKalibrasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $images = array();
+        
+        $id = $request->data['id'];
+        $nama = $request->data['nama'];
+        $filename = $request->data['filename'];
+        $merk = $request->data['merk'];
+        $nomor_seri = $request->data['nomor_seri'];
+        $nomor_inventaris = $request->data['nomor_inventaris'];
+        $jumlah = $request->data['jumlah'];
+        $tanggal_kalibrasi = $request->data['tanggal_kalibrasi'];
+        $perusahaan = $request->data['perusahaan'];
+        $eksternal = $request->data['eksternal'];
+
+        $update_data = AlatStandarKalibrasi::find($id);
+        $update_data->nama_alat_ukur = $nama; 
+
+        // $imageName = time().'.'.$filename->getClientOriginalExtension();
+        // $filename->move(public_path('assets/images'), $imageName);
+        // $insert_data->gambar = $imageName;
+
+        $update_data->merk = $merk; 
+        $update_data->nomor_seri = $nomor_seri; 
+        $update_data->nomor_inventaris = $nomor_inventaris; 
+        $update_data->jumlah = $jumlah; 
+        $update_data->tanggal_kalibrasi = $tanggal_kalibrasi; 
+        $update_data->perusahaan = $perusahaan; 
+        $update_data->eksternal = $eksternal; 
+        // dd($update_data);
+        $update_data->save();
+
+
+        if ($update_data) {
+            return 'success';
+        } else {
+            $err['message'] = 'error';
+            $err['detail'] = '';
+            return $err;
+        }    
     }
 
     /**

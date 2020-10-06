@@ -186,7 +186,20 @@ class LabPengujianController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alat = MasterData::all();
+        $out = [];
+        $data = DB::table('lab-cirebon.alat_standar')->get();
+        if (count($data) > 0) {
+            $out['state'] = true;
+            $out['message'] = 'success';
+            $out['data'] = $data;
+        } else {
+            $out['state'] = false;
+            $out['message'] = 'empty';
+            $out['data'] = null;
+        }
+
+        return view('dashboard.pengujian.edit', compact('alat'));
     }
 
     /**
@@ -198,7 +211,51 @@ class LabPengujianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+
+        // dd($request->all());
+        // $this->validate($request, [
+        //     'filename' => 'required',
+        //     'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048'
+        // ]);    
+        
+        $images = array();
+        
+        $id = $request->data['id'];
+        $nama = $request->data['nama'];
+        $filename = $request->data['filename'];
+        $merk = $request->data['merk'];
+        $nomor_seri = $request->data['nomor_seri'];
+        $nomor_inventaris = $request->data['nomor_inventaris'];
+        $jumlah = $request->data['jumlah'];
+        $tanggal_kalibrasi = $request->data['tanggal_kalibrasi'];
+        $perusahaan = $request->data['perusahaan'];
+        $eksternal = $request->data['eksternal'];
+
+        $update_data = AlatStandar::find($id);
+        $update_data->nama_alat_ukur = $nama; 
+
+        // $imageName = time().'.'.$filename->getClientOriginalExtension();
+        // $filename->move(public_path('assets/images'), $imageName);
+        // $insert_data->gambar = $imageName;
+
+        $update_data->merk = $merk; 
+        $update_data->nomor_seri = $nomor_seri; 
+        $update_data->nomor_inventaris = $nomor_inventaris; 
+        $update_data->jumlah = $jumlah; 
+        $update_data->tanggal_kalibrasi = $tanggal_kalibrasi; 
+        $update_data->perusahaan = $perusahaan; 
+        $update_data->eksternal = $eksternal; 
+        // dd($update_data);
+        $update_data->save();
+
+
+        if ($update_data) {
+            return 'success';
+        } else {
+            $err['message'] = 'error';
+            $err['detail'] = '';
+            return $err;
+        }    
     }
 
     /**

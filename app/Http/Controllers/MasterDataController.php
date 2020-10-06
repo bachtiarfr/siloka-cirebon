@@ -154,6 +154,7 @@ class MasterDataController extends Controller
         $nama = $request->data['nama'];
         $update_data = MasterData::find($id);
         $update_data->nama = $nama; 
+        // dd($update_data);
         $update_data->save();
         if ($update_data) {
             return 'success';

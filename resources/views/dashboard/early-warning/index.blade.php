@@ -124,7 +124,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <h3 class="font-weight-normal mb-3">Watu Early Warning System :</h3>
+                <h3 class="font-weight-normal mb-3">Early Warning System :</h3>
                 <h4 class="h4 v_early_warning"></h4>
               </div>
               <!-- Grid column -->
@@ -166,7 +166,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <h3 class="font-weight-normal mb-3">Watu Early Warning System :</h3>
+                <h3 class="font-weight-normal mb-3">Early Warning System :</h3>
                 <h4 class="h4 v_early_warning"></h4>
               </div>
               <!-- Grid column -->

@@ -212,8 +212,8 @@
             var id = $(this).attr('id')
             nama = $('#nama').val()
             
-          let url = "{{url('master-data/update-data')}}"+'/'+id+"";
-        //   window.location.href = url;
+            let url = "{{url('master-data/update-data')}}"+'/'+id+"";
+            $('.save_form').attr('action', url).submit();
             data = {
                 id : id,
                 nama : nama,
@@ -300,7 +300,7 @@
         
       var data = table_master.row($(this).parents('tr')).data()
       // console.log(data);
-      var nama = data[0]
+      var nama = data[1]
       alamat = data[1]
       no_telepon = data[2]
       

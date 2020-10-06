@@ -71,7 +71,7 @@
                           <option value="{{$item->nama}}" data-id="{{$item->id}}">{{$item->nama}}</option>
                           @endforeach  
                           </select>
-                          <input type="text" id="id_alat" name="id_alat" class="form-control">
+                          <input type="text" id="id_alat" name="id_alat" class="form-control" hidden>
                           {{-- <input type="text" id="nama_alat_ukur" name="nama_alat_ukur" placeholder="Masukan nama alat" class="form-control" required> --}}
                       </div>
                       <div class="form-group">
@@ -106,7 +106,7 @@
                               </div>
                               <div class="col">
                                   <label for="jumlah" class=" form-control-label">Jumlah</label>
-                                  <input type="text" id="jumlah" name="jumlah" placeholder="Masukan jumlah" class="form-control" required>
+                                  <input type="number" id="jumlah" name="jumlah" placeholder="Masukan jumlah" class="form-control" required>
                               </div>
                           </div>
                       </div>
@@ -282,25 +282,51 @@
         confirmButtonText: 'Update!'
       }).then((result) => {
         if (result.value) {
-          let id = $(this).attr('id')
-          let url = "{{url('lab-pengujian/edit-data')}}"+'/'+id+"";
-          window.location.href = url;
-          // console.log(url);
-          // $.ajax({
-          //   url : url,
-          //   method : 'GET',
-          //   success: function(data) {                
-          //     if (data.message == 'success') {
-          //       Swal.fire(
-          //         'Terupdate!',
-          //         'Data Berhasil Diupdate.',
-          //         'success'
-          //       )
-          //       // table_pengujian.row().remove().draw()
-          //       // i = 0;
-          //       }
-          //     }
-          // })
+            var id = $(this).attr('id')
+            nama = $('#nama_alat_ukur').val()
+            filename = $('#filename').val()
+            merk = $('#merk').val()
+            nomor_seri = $('#nomor_seri').val()
+            kapasitas = $('#kapasitas').val()
+            kelas = $('#kelas').val()
+            nomor_inventaris = $('#nomor_inventaris').val()
+            jumlah = $('#jumlah').val()
+            tanggal_kalibrasi = $('#tanggal_kalibrasi').val()
+            perusahaan = $('#perusahaan').val()
+            eksternal = $('#eksternal').val()
+            
+            let url = "{{url('lab-kalibrasi/update-data')}}"+'/'+id+"";
+            $('.save_form').attr('action', url).submit();
+            data = {
+                id : id,
+                nama : nama,
+                filename : filename,
+                merk : merk,
+                nomor_seri : nomor_seri,
+                nomor_inventaris : nomor_inventaris,
+                jumlah : jumlah,
+                tanggal_kalibrasi : tanggal_kalibrasi,
+                perusahaan : perusahaan,
+                eksternal : eksternal
+            }
+          console.log(url);
+          $.ajax({
+            url : url,
+            method : 'POST',
+            data : {_token:"{{ csrf_token() }}",data},
+            success: function(data) {                
+                if (data == 'success') {
+                clear_table()
+                Swal.fire(
+                  'Terupdate!',
+                  'Data Berhasil Diupdate.',
+                  'success'
+                )
+                var url =  "{{url('lab-kalibrasi')}}";
+                window.location.href = url;
+                }
+              }
+          })
         }
       })
 
@@ -354,6 +380,8 @@
                   "</div>",
                 11:""+
                 "<img src='"+url+"' class='myImg'>",
+                12:val.tanggal_kalibrasi,
+                13:val.perusahaan,
               })
               table_pengujian.draw()
               i++
@@ -371,7 +399,8 @@
       $('#kelas').val('')
       $('#nomor_inventaris').val('')
       $('#jumlah').val('')
-      $('#internal').val('')
+      $('#tanggal_kalibrasi').val('')
+      $('#perusahaan').val('')
       $('#eksternal').val('')
     }
 
@@ -389,7 +418,8 @@
       kelas = data[5]
       nomor_inventaris = data[6]
       jumlah = data[7]
-      internal = data[8]
+      tanggal_kalibrasi[12]
+      perusahaan = data[13]
       eksternal = data[9]
       
       var indexRow = table_pengujian.row($(this).parents('tr')).index()
@@ -401,7 +431,8 @@
       $('#kelas').val(kelas)
       $('#nomor_inventaris').val(nomor_inventaris)
       $('#jumlah').val(jumlah)
-      $('#internal').val(internal)
+      $('#tanggal_kalibrasi').val(tanggal_kalibrasi)
+      $('#perusahaan').val(perusahaan)
       $('#eksternal').val(eksternal)
 
       $('.save_form').attr('action','edit')
@@ -445,19 +476,49 @@
         confirmButtonText: 'Ya, Edit!'
       }).then((result) => {
         if (result.value) {
-          let id = $(this).attr('id')
-          let url = "{{url('lab-pengujian/update-data')}}"+'/'+id+"";
-          // console.log(url);
-          var data = {
-            id : id
-          }
+            var id = $(this).attr('id')
+            nama = $('#nama_alat_ukur').val()
+            filename = $('#filename').val()
+            merk = $('#merk').val()
+            nomor_seri = $('#nomor_seri').val()
+            kapasitas = $('#kapasitas').val()
+            kelas = $('#kelas').val()
+            nomor_inventaris = $('#nomor_inventaris').val()
+            jumlah = $('#jumlah').val()
+            tanggal_kalibrasi = $('#tanggal_kalibrasi').val()
+            perusahaan = $('#perusahaan').val()
+            eksternal = $('#eksternal').val()
+            
+            let url = "{{url('lab-kalibrasi/update-data')}}"+'/'+id+"";
+            $('.save_form').attr('action', url).submit();
+            data = {
+                id : id,
+                nama : nama,
+                filename : filename,
+                merk : merk,
+                nomor_seri : nomor_seri,
+                nomor_inventaris : nomor_inventaris,
+                jumlah : jumlah,
+                tanggal_kalibrasi : tanggal_kalibrasi,
+                perusahaan : perusahaan,
+                eksternal : eksternal
+            }
+          console.log(url);
           $.ajax({
             url : url,
-            method : 'GET',
-            data : data,
+            method : 'POST',
+            data : {_token:"{{ csrf_token() }}",data},
             success: function(data) {                
-              window.location.href = url;
-            }
+                if (data == 'success') {
+                Swal.fire(
+                  'Terupdate!',
+                  'Data Berhasil Diupdate.',
+                  'success'
+                )
+                var url =  "{{url('lab-kalibrasi')}}";
+                window.location.href = url;
+                }
+              }
           })
         }
       })    
