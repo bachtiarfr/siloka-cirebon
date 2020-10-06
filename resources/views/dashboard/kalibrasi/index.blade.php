@@ -33,7 +33,7 @@
                                         <th>kelas</th>
                                         <th>Nomor Inventaris</th>
                                         <th>Jumlah</th>
-                                        <th>Internal</th>
+                                        <th>Tanggal Kalibrasi</th>
                                         <th>Eksternal</th>
                                         <th>Action</th>
                                     </tr>
