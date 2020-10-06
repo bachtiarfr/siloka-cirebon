@@ -268,7 +268,7 @@
           $("#currentTime").text("Current second:" + audioElement.currentTime);
       });
       
-      $('#play').click(function() {
+      $('.play').click(function() {
           console.log('clicked');
           audioElement.play();
           Swal.fire({

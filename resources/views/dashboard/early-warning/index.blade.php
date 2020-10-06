@@ -133,7 +133,7 @@
           <!-- Grid row -->
           
         </div>
-        <button class="col-md-12 btn-warning" id="play">
+        <button class="col-md-12 btn-warning play" id="play">
           Nyalakan Alarm Sekarang
         </button>
         <!-- News jumbotron -->
@@ -175,7 +175,7 @@
           <!-- Grid row -->
           
         </div>
-        <button class="col-md-12 btn-warning" id="play">
+        <button class="col-md-12 btn-warning play" id="play">
           Nyalakan Alarm Sekarang
         </button>
         <!-- News jumbotron -->
@@ -227,7 +227,7 @@
         $("#currentTime").text("Current second:" + audioElement.currentTime);
     });
     
-    $('#play').click(function() {
+    $('.play').click(function() {
         audioElement.play();
         Swal.fire({
           title: 'STOP?',
