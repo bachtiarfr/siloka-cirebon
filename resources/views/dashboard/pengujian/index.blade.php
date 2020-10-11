@@ -34,7 +34,7 @@
                                         <th>kelas</th>
                                         <th>Nomor Inventaris</th>
                                         <th>Jumlah</th>
-                                        <th>Tanggal Kalibrasi</th>
+                                        <th>Internal</th>
                                         <th>Eksternal</th>
                                         <th>Action</th>
                                     </tr>
@@ -112,7 +112,7 @@
                           </div>
                       </div>
                       <div class="form-group">
-                        <label for="Tanggal Kalibrasi" class=" form-control-label">Tanggal Kalibrasi</label>
+                        <label for="Tanggal Kalibrasi" class=" form-control-label">Internal</label>
                         <input type="date" name="tanggal_kalibrasi" id="tanggal_kalibrasi">
                         <input type="text" id="perusahaan" name="perusahaan" placeholder="Nama Perusahaan" class="form-control" required>
 

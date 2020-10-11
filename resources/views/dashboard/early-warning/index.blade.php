@@ -411,7 +411,7 @@
         })
     }
 
-    table_master.on('click', 'tbody tr td div button', function(){
+  table_master.on('click', 'tbody tr td div button', function(){
     if ($(this).attr('class') === 'edit') {
       let id = $(this).attr('id');
       // console.log('click edit',id);

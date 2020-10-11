@@ -228,10 +228,12 @@ class LabPengujianController extends Controller
         $nomor_inventaris = $request->data['nomor_inventaris'];
         $jumlah = $request->data['jumlah'];
         $tanggal_kalibrasi = $request->data['tanggal_kalibrasi'];
+        // dd($tanggal_kalibrasi);
         $perusahaan = $request->data['perusahaan'];
         $eksternal = $request->data['eksternal'];
 
         $update_data = AlatStandar::find($id);
+        // dd($update_data->id_alat);
         $update_data->nama_alat_ukur = $nama; 
 
         // $imageName = time().'.'.$filename->getClientOriginalExtension();
@@ -245,11 +247,16 @@ class LabPengujianController extends Controller
         $update_data->tanggal_kalibrasi = $tanggal_kalibrasi; 
         $update_data->perusahaan = $perusahaan; 
         $update_data->eksternal = $eksternal; 
-        // dd($update_data);
         $update_data->save();
-
+        // dd($update_data);
 
         if ($update_data) {
+
+            DB::table('lab-cirebon.data_kalibrasi_pengujian')
+                ->where('id_alat', $update_data->id_alat)
+                // ->get();
+                ->update(['tanggal_kalibrasi' => $tanggal_kalibrasi]);
+
             return 'success';
         } else {
             $err['message'] = 'error';

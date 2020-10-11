@@ -219,6 +219,12 @@ class LabKalibrasiController extends Controller
 
 
         if ($update_data) {
+
+            DB::table('lab-cirebon.data_kalibrasis')
+                ->where('id_alat', $update_data->id_alat)
+                ->update(['tanggal_kalibrasi' => $tanggal_kalibrasi]);
+
+
             return 'success';
         } else {
             $err['message'] = 'error';
@@ -242,7 +248,9 @@ class LabKalibrasiController extends Controller
 
             DB::table('lab-cirebon.data_kalibrasis')
                 ->where('id_alat', $get_alat->id)
+                // ->get();
                 ->delete();
+                // dd($a);
 
             return response()->json([
                 'message' => 'success'
