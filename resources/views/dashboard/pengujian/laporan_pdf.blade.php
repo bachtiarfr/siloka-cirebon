@@ -31,7 +31,7 @@
 				<th>Kapasitas</th>
 				<th>Kelas</th>
 				<th>Jumlah</th>
-				<th>Tanggal Kalibrasi</th>
+				<th>Internal</th>
 				<th>Eksternal</th>
 			</tr>
 		</thead>
