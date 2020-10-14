@@ -242,16 +242,14 @@ class LabKalibrasiController extends Controller
     public function destroy($id)
     {
         $get_alat = AlatStandarKalibrasi::find($id);
-        // dd($get_alat->id);
+        // dd($get_alat);
         $get_alat->delete();
         if ($get_alat) {
-
             DB::table('lab-cirebon.data_kalibrasis')
-                ->where('id_alat', $get_alat->id)
-                // ->get();
+                ->where('id_alat', $get_alat->id_alat)
                 ->delete();
-                // dd($a);
-
+                // ->get();
+            // dd($a);
             return response()->json([
                 'message' => 'success'
             ]);
