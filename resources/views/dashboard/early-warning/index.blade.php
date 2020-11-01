@@ -118,14 +118,14 @@
             <div class="row">
               <div class="col-md-12">
                 <h3 class="font-weight-normal mb-3">Tanggal Kalibrasi Awal :</h3>
-                <h4 class="h4 v_tanggal"></h4>
+                <h4 class="h4 v_tanggal_pengujian"></h4>
               </div>
               <!-- Grid column -->
             </div>
             <div class="row">
               <div class="col-md-12">
                 <h3 class="font-weight-normal mb-3">Early Warning System :</h3>
-                <h4 class="h4 v_early_warning"></h4>
+                <h4 class="h4 v_early_warning_pengujian"></h4>
               </div>
               <!-- Grid column -->
             </div>
@@ -160,14 +160,14 @@
             <div class="row">
               <div class="col-md-12">
                 <h3 class="font-weight-normal mb-3">Tanggal Kalibrasi Awal :</h3>
-                <h4 class="h4 v_tanggal"></h4>
+                <h4 class="h4 v_tanggal_kalibrasi"></h4>
               </div>
               <!-- Grid column -->
             </div>
             <div class="row">
               <div class="col-md-12">
                 <h3 class="font-weight-normal mb-3">Early Warning System :</h3>
-                <h4 class="h4 v_early_warning"></h4>
+                <h4 class="h4 v_early_warning_kalibrasi"></h4>
               </div>
               <!-- Grid column -->
             </div>
@@ -358,7 +358,7 @@
                 2:kalibrasi, 
                 3:""+
                 "<div class='col-action'>" +
-                    "<button data-toggle='modal' data-target='#ModalViewDataKalibrasi' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
+                    "<button data-toggle='modal' data-target='#ModalViewDataPengujian' data-tgl='"+warning_sys+"' class='view-pengujian' id='"+val.id+"' >" +
                       "Cek Early Warning System" +
                     "</button>" +
                     // "<button class='delete' id='"+val.id+"' >" +
@@ -395,7 +395,7 @@
                 2:kalibrasi, 
                 3:""+
                 "<div class='col-action'>" +
-                    "<button data-toggle='modal' data-target='#ModalViewDataPengujian' data-tgl='"+warning_sys+"' class='view' id='"+val.id+"' >" +
+                    "<button data-toggle='modal' data-target='#ModalViewDataKalibrasi' data-tgl='"+warning_sys+"' class='view-kalibrasi' id='"+val.id+"' >" +
                       "Cek Early Warning System" +
                     "</button>" +
                     // "<button class='delete' id='"+val.id+"' >" +
@@ -412,33 +412,29 @@
     }
 
   table_master.on('click', 'tbody tr td div button', function(){
-    if ($(this).attr('class') === 'edit') {
-      let id = $(this).attr('id');
-      // console.log('click edit',id);
-        
-      var data = table_master.row($(this).parents('tr')).data()
-      // console.log(data);
-      var nama = data[0]
-      alamat = data[1]
-      no_telepon = data[2]
-      
-      var indexRow = table_master.row($(this).parents('tr')).index()
-      
-      $('#nama').val(nama)
-      $('#alamat').val(alamat)
-      $('#no_telepon').val(no_telepon)
-      
-      $('.save_form').attr('action','edit')
-      $('.save_form').attr('id',id)
-    } else if ($(this).attr('class') === 'view') {
+    if ($(this).attr('class') === 'view-pengujian') {
         let early_warning_sys = $(this).attr('data-tgl');
         console.log('view tgl', early_warning_sys);      
         var data = table_master.row($(this).parents('tr')).data()
         var tgl = data[2]
 
-        $('.v_early_warning').html(early_warning_sys)
+        $('.v_early_warning_pengujian').html(early_warning_sys)
 
-        $('.v_tanggal').html(tgl)
+        $('.v_tanggal_pengujian').html(tgl)
+    }
+  })
+
+  table_master2.on('click', 'tbody tr td div button', function(){
+    if ($(this).attr('class') === 'view-kalibrasi') {
+        let early_warning_sys = $(this).attr('data-tgl');
+        console.log('view tgl', early_warning_sys);      
+        var data = table_master2.row($(this).parents('tr')).data()
+        console.log('data', data);
+        var tgl = data[2]
+
+        $('.v_early_warning_kalibrasi').html(early_warning_sys)
+
+        $('.v_tanggal_kalibrasi').html(tgl)
     }
   })
 
